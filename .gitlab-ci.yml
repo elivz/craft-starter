@@ -1,0 +1,40 @@
+image: elivz/php
+
+variables:
+  LIVE_SSH_USER: REPLACE_ME
+  LIVE_DOMAIN: REPLACE_ME
+  LIVE_ROOT: /var/www/public_html
+  STAGING_SSH_USER: REPLACE_ME
+  STAGING_DOMAIN: REPLACE_ME
+  STAGING_ROOT: /var/www/staging_html
+
+cache:
+  paths:
+    - node_modules
+    - dist/vendor
+
+before_script:
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - yarn --non-interactive --silent --frozen-lockfile
+  - yarn build
+  - composer install --no-interaction --no-dev --prefer-dist --no-progress
+
+stage_deploy:
+  stage: deploy
+  only:
+    - develop
+  artifacts:
+    paths:
+      - build/
+  script:
+    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public_html/media' --exclude '.env.php' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
+
+live_deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public_html/media' --exclude '.env.php' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}

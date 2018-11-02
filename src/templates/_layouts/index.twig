@@ -1,0 +1,97 @@
+{% set domains = [
+  siteUrl,
+  'https://p.typekit.net',
+  'https://use.typekit.net',
+  'https://www.googletagmanager.com/',
+] -%}
+{%- for domain in domains %}
+  {% header "Link: <#{domain}>; rel=dns-prefetch;,<#{domain}>; rel=preconnect; crossorigin;" -%}
+{% endfor -%}
+
+<!DOCTYPE html>
+<html lang="{{ craft.app.language|slice(0,2) }}" prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb#" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% for domain in domains %}
+      <link rel="preconnect" href="{{ domain }}" crossorigin>
+    {% endfor %}
+
+    {# Everything Craft outputs directly -#}
+    {{ head() }}
+
+    {# Initialize polyfills -#}
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+      {# Polyfill other modern JS methods -#}
+      function loadScript(src) {
+        var r=document.getElementsByTagName('script')[0],s=document.createElement('script');s.src=src;r.parentNode.insertBefore(s, r);
+      }
+      if (!('Promise' in this)) {
+        loadScript('https://cdn.polyfill.io/v2/polyfill.min.js?features=~html5-elements,HTMLPictureElement,Element.prototype.classList,Object.assign,Event,Promise');
+        loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
+      }
+    </script>
+    {{ craft.twigpack.includeSafariNomoduleFix() }}
+
+    {# Main Styles -#}
+    {{ craft.twigpack.includeCssModule("main.css") }}
+    <script>
+      (function(d) {
+        var config = { kitId: 'xxxxxx', scriptTimeout: 3000, async: true },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+    </script>
+    {% block additionalCss %}{% endblock %}
+
+    {# Load javascript files -#}
+    {{ craft.twigpack.includeJsModule("initial.js") }}
+
+    {# RSS feed autodiscovery -#}
+    <link rel="alternate" type="application/rss+xml" title="{{ siteName }} RSS feed" href="{{ url('blog/feed.rss') }}">
+
+    {# Favicons, etc. -#}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('assets/static/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('assets/static/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('assets/static/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url('assets/static/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ url('assets/static/safari-pinned-tab.svg') }}" color="#ff0000">
+    <link rel="shortcut icon" href="{{ url('assets/static/favicon.ico') }}">
+    <meta name="msapplication-config" content="{{ url('assets/icons/browserconfig.xml') }}">
+    <meta name="msapplication-TileColor" content="#ff0000">
+    <meta name="apple-mobile-web-app-title" content="{{ siteName }}">
+    <meta name="application-name" content="{{ siteName }}">
+    <meta name="theme-color" content="#f7f7f7">
+  </head>
+
+  <body class="{{ bodyClass ?? '' }}">
+    {{ beginBody() }}
+
+    <a href="#main" class="skip-link no-smooth-scroll">Skip to main content</a>
+
+    <!--[if lt IE 11]>
+      <div class="browserupgrade">
+        You are using an <strong>outdated</strong> browser.
+        Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+      </div>
+    <![endif]-->
+
+    <div class="container">
+      {# Global website header, including navigation #}
+      {% include "_content/global-header" %}
+
+      <main id="main" class="page-content" tabindex="-1">
+        {% block content %}
+          {% include ["_content/body-#{entry.slug}", '_content/body-default'] %}
+        {% endblock %}
+      </main>
+
+      {# Global footer #}
+      {% include "_content/global-footer" %}
+    </div>
+
+    {{ craft.twigpack.includeJsModule("main.js", true) }}
+    {{ endBody() }}
+  </body>
+</html>

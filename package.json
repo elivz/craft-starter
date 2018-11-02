@@ -1,0 +1,133 @@
+{
+  "name": "craft-starter",
+  "version": "1.0.0",
+  "author": "Eli Van Zoeren <eli@elivz.com>",
+  "homepage": "https://elivz.com/",
+  "license": "MIT",
+  "private": true,
+  "browser": "/dist/web/index.php",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:elivz/CraftStarter.git"
+  },
+  "scripts": {
+    "clean": "rm -rf dist/templates dist/public_html/assets",
+    "watch": "yarn run clean && NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "build": "yarn run clean && NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "lint-scripts": "eslint --fix 'src/scripts/**/*.js'",
+    "lint-styles": "prettier --write 'src/styles/**/*.{css,scss,js}' && stylelint 'src/styles/**/*.{css,scss}' --fix verbose --color",
+    "lint": "yarn run lint-styles && yarn run lint-scripts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/scripts/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/styles/**/*.{css,scss}": [
+      "stylelint --fix verbose --color",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "accessible-toggle": "^1.3.0",
+    "axios": "^0.18.0",
+    "delegated-events": "^1.0.0",
+    "lazysizes": "^4.1.4",
+    "raf-throttle": "^2.0.3",
+    "reframe.js": "^2.2.4",
+    "sweet-scroll": "^3.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.3",
+    "lint-staged": "^8.0.0",
+    "prettier": "^1.14.3",
+    "stylelint": "^9.7.1",
+    "stylelint-config-recommended": "^2.1.0"
+  },
+  "browserslist": {
+    "production": [
+      "> 0.25% in US",
+      "> 2%"
+    ],
+    "legacyBrowsers": [
+      "> 0.25% in US",
+      "> 2%"
+    ],
+    "modernBrowsers": [
+      "last 2 Chrome versions",
+      "not Chrome < 60",
+      "last 2 Safari versions",
+      "not Safari < 10.1",
+      "last 2 iOS versions",
+      "not iOS < 10.3",
+      "last 2 Firefox versions",
+      "not Firefox < 54",
+      "last 2 Edge versions",
+      "not Edge < 15"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ]
+    ]
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "browser": true
+    },
+    "extends": [
+      "airbnb-base",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "import"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "rules": {
+      "prettier/prettier": "error",
+      "no-new": 1
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-recommended",
+    "rules": {
+      "max-nesting-depth": [
+        3,
+        {
+          "ignoreAtRules": [
+            "media",
+            "supports",
+            "include"
+          ]
+        }
+      ],
+      "selector-max-compound-selectors": 4,
+      "at-rule-no-unknown": null
+    }
+  }
+}

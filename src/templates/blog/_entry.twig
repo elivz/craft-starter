@@ -1,0 +1,30 @@
+{% extends "_layouts" %}
+{% import "_macros" as m %}
+
+{% set bodyClass = "post" %}
+
+{% block content %}
+  <section class="post">
+    <header class="post__header">
+      <div class="post__meta">
+        {{ m.date(entry.postDate) }}
+      </div>
+      <h1 class="post__heading">{{ entry.title|typogrify }}</h1>
+    </header>
+
+    <div class="post__content">
+      {% for block in entry.postContent.all() %}
+        {% include "_components/block-" ~ block.type ignore missing %}
+      {% endfor %}
+    </div>
+
+    <footer class="post__footer">
+      <ul>
+        <li>Share:</li>
+        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ entry.url|url_encode }}" class="js-share-link">Facebook</a></li>
+        <li><a href="https://twitter.com/intent/tweet?text={{ entry.title|url_encode }}&url={{ entry.url|url_encode }}" class="js-share-link">Twitter</a></li>
+        <li><a href="mailto:?subject={{ entry.title|url_encode }}&body={{ entry.url|url_encode }}" class="js-share-link">Email</a></li>
+      </ul>
+    </footer>
+  </section>
+{% endblock %}

@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  web:
+    image: elivz/php
+    ports:
+      - "8080:80"
+      - "3000:3000"
+      - "3001:3001"
+    volumes:
+      - ..:/var/www
+    links:
+      - db
+      - redis
+      - mail
+    environment:
+      # Don't change these
+      ENVIRONMENT:
+      DB_HOST:
+      DB_NAME:
+      DB_USER:
+      DB_PASS:
+      DB_PORT:
+      REDIS_HOST:
+      REDIS_PORT:
+      BASE_URL:
+      BASE_PATH:
+      PUBLIC_FOLDER: /dist${PUBLIC_FOLDER}
+      SECURITY_KEY:
+      IP:
+
+  db:
+    image: mariadb
+    ports:
+      - "4306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: 123
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: password
+
+  redis:
+      image: redis:4.0-alpine
+
+  mail:
+    image: tophfr/mailcatcher
+    ports:
+      - "1080:80"

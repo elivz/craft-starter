@@ -1,0 +1,108 @@
+{% macro date(givenDate, format = 'long') %}
+  <time datetime="{{ givenDate.format('c') }}" pubdate>
+    {{ givenDate|date(format) }}
+  </time>
+{% endmacro %}
+
+{% macro dateRange(startDate, endDate) %}
+  {%- spaceless %}
+    {% if startDate|date('Y-m-d') == endDate|date('Y-m-d') %}
+      {{ startDate|date('F j, Y') }}
+    {% else %}
+      {{ startDate|date('F j') }} &ndash;
+      {% if startDate|date('m') == endDate|date('m') %}
+        {{ endDate|date('j, Y') }}
+      {% else %}
+        {{ endDate|date('F j, Y') }}
+      {% endif %}
+    {% endif %}
+  {% endspaceless -%}
+{% endmacro %}
+
+{% macro firstSentence(entry) %}
+  {%- spaceless %}
+    {% if not entry.isFieldEmpty('introduction') %}
+      {% set text = entry.introduction %}
+    {% elseif not entry.isFieldEmpty('mainContent') %}
+      {% set body = entry.mainContent %}
+      {% set firstTextBlock = body.type('text').first() %}
+      {% set text = firstTextBlock ? firstTextBlock.text : '' %}
+    {% endif %}
+
+    {% if text is defined and text != '' %}
+      <p>{{ text|striptags|split('.', 2)[0]|raw }}.</p>
+    {% endif %}
+  {% endspaceless -%}
+{% endmacro %}
+
+{% macro emailLink(email, class = false) %}
+  {%- spaceless %}
+    {% if email %}
+      <a href="mailto:{{ email }}" itemprop="email"{% if class %} class="{{ class }}"{% endif %}>{{ email }}</a>
+    {% endif %}
+  {% endspaceless -%}
+{% endmacro %}
+
+{% macro phoneLink(phone, class = false) %}
+  {%- spaceless %}
+    {% if phone %}
+      <a href="tel:{{ phone|replace('/[^\\d]+/', '') }}" itemprop="telephone"{% if class %} class="{{ class }}"{% endif %}>{{ phone }}</a>
+    {% endif %}
+  {% endspaceless %}
+{% endmacro -%}
+
+{% macro srcset(image, options={}) %}
+  {%- spaceless %}
+    {% if image|length %}
+      {# Default options #}
+      {% set options = {
+        alt: image.title ?? '',
+        widths: [ 2000, 1000, 600 ],
+        defaultWidthIndex: 1,
+        sizes: 'auto',
+        transformConfig: {}
+      }|merge(options) %}
+
+      {# Store the original width - we shouldn't generate transforms larger than this #}
+      {% set originalWidth = image.width %}
+
+      {# Create an array of transform definitions #}
+      {% set transforms = [] %}
+      {% for width in options.widths %}
+        {% if width <= originalWidth %}
+          {% set transforms = transforms|merge([{ width: width }]) %}
+        {% elseif loop.first %}
+          {% set transforms = transforms|merge([{ width: originalWidth*1 }]) %}
+        {% endif %}
+      {% endfor %}
+
+      {# Set transform options #}
+      {% set transformConfig = options.transformConfig %}
+      {% set transformConfig = transformConfig|merge({ position: image.getFocalPoint() }) %}
+
+      {# Do the transformations #}
+      {% set transformed = craft.imager.transformImage(image, transforms, transformConfig) %}
+
+      {# Default image src #}
+      {% if transformed|length > options.defaultWidthIndex %}
+        {% set defaultImg = transformed[options.defaultWidthIndex].url %}
+      {% else %}
+        {% set defaultImg = transformed[0] %}
+        {% set options = options|merge({ defaultWidthIndex: 0 }) %}
+      {% endif %}
+
+      {# Output it to the screen #}
+        <img
+          src="{{ defaultImg }}"
+          srcset="{{ craft.imager.placeholder({ width: transformed[options.defaultWidthIndex].width, height: transformed[options.defaultWidthIndex].height, color: '#575a5d'}) }}"
+          data-srcset="{{ transformed|length > 1 ? craft.imager.srcset(transformed) : defaultImg }}"
+          alt="{{ options.alt }}"
+          sizes="{{ options.sizes }}"
+          width="{{ transformed[options.defaultWidthIndex].width }}"
+          height="{{ transformed[options.defaultWidthIndex].height }}"
+          class="lazyload {{ options.class ?? '' }}"
+          {{ (options.attr ?? '')|raw }}
+        >
+    {% endif %}
+  {% endspaceless -%}
+{% endmacro %}

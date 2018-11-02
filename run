@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+if ! [ -x "$(command -v docker)" ]; then
+  echo "⚠️  ${red}Error: Docker is required and not installed. Please install it before running this script.${reset}"
+  open 'https://www.docker.com/docker-mac'
+  exit 1
+fi
+
+COMPOSE="docker-compose"
+RUN="${COMPOSE} run -u www-data --no-deps web"
+EXEC="${COMPOSE} exec -u www-data web"
+
+export IP="$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}')"
+
+cd config
+
+case "$1" in
+    "init")
+        ../run build
+        ../run update
+        ;;
+
+    "build")
+        echo "🏁  ${green}Initializing Docker images${reset}"
+        ${COMPOSE} pull
+        ${COMPOSE} build
+        ;;
+
+    "update")
+        if [ -f ../package.json ]; then
+            echo "📦  ${green}Updating Node dependencies from package.json${reset}"
+            ${RUN} yarn
+        fi
+        if [ -f ../composer.json ]; then
+            echo "📦  ${green}Updating PHP dependencies from composer.json${reset}"
+            ${RUN} composer update
+        fi
+        ;;
+
+    "start")
+        echo "${green}Starting your Docker images${reset}"
+        ${COMPOSE} up -d
+        echo "✅  Run ${green}./run watch${reset} to begin work!"
+        ;;
+
+    "stop")
+        echo "🛑  ${red}Killing your Docker images${reset}"
+        ${COMPOSE} down
+        ;;
+
+    "logs")
+        ${COMPOSE} logs
+        ;;
+
+    "sync")
+        echo "☁️  ${green}Pulling assets and database from the remote server${reset}"
+        ./scripts/pull_db.sh
+        ./scripts/pull_assets.sh
+        ;;
+
+    "watch")
+        open "http://${IP}.xip.io:3000"
+        ${EXEC} yarn watch
+        ;;
+
+    "production")
+        ${EXEC} yarn build
+        ;;
+
+    "lint")
+        ${EXEC} yarn lint
+        ;;
+
+    *)
+        ${EXEC} "$@"
+        ;;
+esac

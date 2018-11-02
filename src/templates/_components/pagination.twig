@@ -1,0 +1,25 @@
+{% if pageInfo is defined and pageInfo.totalPages > 1 %}
+  <nav class="pagination">
+    {% if pageInfo.prevUrl %}
+      <a href="{{ pageInfo.prevUrl }}" aria-label="{{ 'Previous Page'|t }}" title="{{ 'Previous Page'|t }}">
+        <span role="presentation">‹</span>
+      </a>
+    {% endif %}
+
+    {% for page, url in pageInfo.getPrevUrls(3) %}
+      <a href="{{ url }}" title="{{ 'Page'|t }} {{ page }}">{{ page }}</a>
+    {% endfor %}
+
+    <span class="inline-block px-2 font-bold" title="{{ 'Current Page'|t }}">{{ pageInfo.currentPage }}</span>
+
+    {% for page, url in pageInfo.getNextUrls(3) %}
+      <a href="{{ url }}" title="{{ 'Page'|t }} {{ page }}">{{ page }}</a>
+    {% endfor %}
+
+    {% if pageInfo.nextUrl %}
+      <a href="{{ pageInfo.nextUrl }}" aria-label="{{ 'Next Page'|t }}" title="{{ 'Next Page'|t }}">
+        <span role="presentation">›</span>
+      </a>
+    {% endif %}
+  </nav>
+{% endif %}

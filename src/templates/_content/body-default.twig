@@ -1,0 +1,18 @@
+{% import '_macros' as m %}
+
+<article class="page">
+  {% if entry.mainPhoto %}
+    {% for photo in entry.mainPhoto.limit(1).all() %}
+      <figure class="page__img">
+        {{ m.srcset(photo) }}
+        {% if photo.assetCredit %}
+          <figcaption class="page__img-credit">Photo by {{ photo.assetCredit }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  {% endif %}
+
+  {% for block in entry.mainContent.all() %}
+    {% include "_components/block-" ~ block.type ignore missing %}
+  {% endfor %}
+</article>

@@ -1,0 +1,19 @@
+{% if block.text %}
+  <div class="card">
+    {% if block.heading %}
+      <h3 class="card--heading">
+        {{ block.heading|typogrify }}
+      </h3>
+    {% endif %}
+    <div class="card--text">
+      <div class="copy">
+        {{ block.text|typogrify }}
+      </div>
+      {% if block.endnote %}
+        <div class="card--note">
+          {{ block.endnote|typogrify }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

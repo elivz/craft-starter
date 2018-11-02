@@ -1,0 +1,33 @@
+{% import '_macros' as m %}
+
+{% set image = block.image.one() ?? false %}
+{% set preheader = block.preheader ?? false %}
+{% set heading = block.heading ?? false %}
+{% set text = block.text ?? false %}
+{% set alignment = block.alignment ?? 'left' %}
+
+<section class="duality">
+  <div class="duality--image">
+    {% if image|length > 1 %}
+      <figure class="portrait">
+        {{ m.srcset(image, {
+          widths: [1000, 600],
+        }) }}
+        {% if image.assetCredit %}
+          <figcaption class="portrait--meta">Photo: {{ image.assetCredit }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endif %}
+  </div>
+  <div class="duality--text">
+    {% if preheader %}
+      <h4 class="duality--kicker">{{ preheader|typogrify }}</h4>
+    {% endif %}
+    {% if heading %}
+      <h3 class="duality--heading">{{ heading|typogrify }}</h3>
+    {% endif %}
+    <div class="duality--detail copy">
+      {{ text|typogrify }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+<footer class="page-footer">
+  <div class="page-footer--left">
+    <div class="page-footer--logo">
+      <a href="{{ siteUrl }}">
+        {{ svg('@webroot/assets/images/logo.svg') }}
+        <b class="page-footer--tagline">
+          {{ global.tagline }}
+        </b>
+      </a>
+    </div>
+  </div>
+  <div class="page-footer--middle">
+    <h3 class="page-footer--heading">Follow us:</h3>
+    <nav class="page-footer--nav">
+      {% for link in seomatic.site.sameAsLinks %}
+        <a href="{{ link.url }}">{{ link.siteName }}</a>
+        {% if not loop.last %}<span>/</span>{% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+  <div class="page-footer--right">
+    <h3 class="page-footer--heading">
+      {{ global.newsletter }}
+    </h3>
+    <form class="page-footer--form">
+      <input type="email" class="page-footer--input" placeholder="Enter your email address"/>
+      <button class="page-footer--button">Subscribe</button>
+    </form>
+  </div>
+  <div class="page-footer--bottom">
+    <div class="page-footer--meta">
+      <p>&copy; {{ siteName }} {{ now.format('Y') }}. <em>Formerly Kim Ricketts Book Events!</em></p>
+      <p>
+        <i>Designed by</i>
+        <a href="https://madebyneversink.com">
+          {{ svg('@webroot/assets/images/logo-neversink.svg') }}
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

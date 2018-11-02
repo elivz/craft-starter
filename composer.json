@@ -1,0 +1,48 @@
+{
+  "name": "elivz/craft-starter",
+  "description": "Craft CMS project template",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "project"
+  ],
+  "license": "MIT",
+  "homepage": "https://craftcms.com/",
+  "type": "project",
+  "require": {
+    "php": ">=7.0.0",
+    "aelvan/imager": "^2.1",
+    "craftcms/cms": "^3.0.0",
+    "craftcms/redactor": "^2.0",
+    "nystudio107/craft-seomatic": "3.1.23",
+    "nystudio107/craft-twigpack": "^1.1",
+    "nystudio107/craft-typogrify": "^1.1",
+    "roave/security-advisories": "dev-master",
+    "verbb/expanded-singles": "^1.0",
+    "vlucas/phpdotenv": "^2.4.0",
+    "yiisoft/yii2-redis": "^2.0.6"
+  },
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "modules\\": "modules/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist",
+    "vendor-dir": "dist/vendor",
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "platform": {
+      "php": "7.0"
+    }
+  },
+  "scripts": {
+    "post-create-project-cmd": [
+      "@php -r \"unlink('LICENSE.md');\"",
+      "@composer dump-autoload -o",
+      "@php craft setup/welcome"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{% extends '_layouts' %}
+
+{% set bodyClass = "blog-index" %}
+
+{% block content %}
+  {% set posts = craft.entries.section('posts') %}
+  {% paginate posts.limit(8) as pageInfo, posts %}
+  {% do seomatic.helper.paginate(pageInfo) %}
+
+  {% for post in posts %}
+    {% include 'blog/_thumbnail' with { post: post } only %}
+  {% endfor %}
+
+  {% include '_components/pagination' with { pageInfo: pageInfo } only %}
+{% endblock %}
