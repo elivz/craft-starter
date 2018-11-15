@@ -11,9 +11,8 @@
   "homepage": "https://craftcms.com/",
   "type": "project",
   "require": {
-    "php": ">=7.0.0",
     "aelvan/imager": "^2.1",
-    "craftcms/cms": "^3.0.0",
+    "craftcms/cms": "^3.1.0-dev",
     "craftcms/redactor": "^2.0",
     "nystudio107/craft-seomatic": "3.1.23",
     "nystudio107/craft-twigpack": "^1.1",
@@ -24,6 +23,7 @@
     "yiisoft/yii2-redis": "^2.0.6"
   },
   "prefer-stable": true,
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "modules\\": "modules/"

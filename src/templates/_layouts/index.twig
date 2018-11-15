@@ -1,4 +1,4 @@
-{% set domains = [
+{%- set domains = [
   siteUrl,
   'https://p.typekit.net',
   'https://use.typekit.net',
@@ -36,13 +36,13 @@
     {{ craft.twigpack.includeSafariNomoduleFix() }}
 
     {# Main Styles -#}
-    {{ craft.twigpack.includeCssModule("main.css") }}
     <script>
       (function(d) {
         var config = { kitId: 'xxxxxx', scriptTimeout: 3000, async: true },
         h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
       })(document);
     </script>
+    {{ craft.twigpack.includeCssModule("main.css") }}
     {% block additionalCss %}{% endblock %}
 
     {# Load javascript files -#}
@@ -90,8 +90,8 @@
       {# Global footer #}
       {% include "_content/global-footer" %}
     </div>
-
-    {{ craft.twigpack.includeJsModule("main.js", true) }}
+test
+    {{ craft.twigpack.includeJsModule("assets/main.js", true) }}
     {{ endBody() }}
   </body>
 </html>

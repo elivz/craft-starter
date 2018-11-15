@@ -1,0 +1,10 @@
+{
+    "buttons": [
+        "unorderedlist",
+        "bold",
+        "italic",
+        "link"
+    ],
+    "plugins": [],
+    "toolbarFixed": true
+}

@@ -1,5 +1,6 @@
 {
   "name": "craft-starter",
+  "description": "Craft Starter Project",
   "version": "1.0.0",
   "author": "Eli Van Zoeren <eli@elivz.com>",
   "homepage": "https://elivz.com/",
@@ -11,9 +12,8 @@
     "url": "git@github.com:elivz/CraftStarter.git"
   },
   "scripts": {
-    "clean": "rm -rf dist/templates dist/public_html/assets",
-    "watch": "yarn run clean && NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "build": "yarn run clean && NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development webpack-dev-server --config config/webpack.dev.js",
+    "build": "NODE_ENV=production webpack --config config/webpack.prod.js --progress --hide-modules",
     "lint-scripts": "eslint --fix 'src/scripts/**/*.js'",
     "lint-styles": "prettier --write 'src/styles/**/*.{css,scss,js}' && stylelint 'src/styles/**/*.{css,scss}' --fix verbose --color",
     "lint": "yarn run lint-styles && yarn run lint-scripts"
@@ -35,6 +35,7 @@
     ]
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "accessible-toggle": "^1.3.0",
     "axios": "^0.18.0",
     "delegated-events": "^1.0.0",
@@ -44,25 +45,71 @@
     "sweet-scroll": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/runtime": "^7.1.2",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.6.0",
+    "create-symlink-webpack-plugin": "^1.0.0",
+    "css-loader": "^1.0.1",
+    "cssnano": "^4.1.7",
+    "dotenv": "^6.1.0",
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "file-loader": "^2.0.0",
+    "glob-all": "^3.1.0",
     "husky": "^1.1.3",
+    "ignore-loader": "^0.1.2",
+    "imagemin": "^6.0.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-optipng": "^6.0.0",
+    "imagemin-svgo": "^7.0.0",
+    "img-loader": "^3.0.1",
     "lint-staged": "^8.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss": "^7.0.5",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.3.0",
     "prettier": "^1.14.3",
+    "resolve-url-loader": "^3.0.0",
+    "sane": "^4.0.2",
+    "style-loader": "^0.23.1",
     "stylelint": "^9.7.1",
-    "stylelint-config-recommended": "^2.1.0"
+    "stylelint-config-recommended": "^2.1.0",
+    "svg-url-loader": "^2.3.2",
+    "symlink-webpack-plugin": "^0.0.4",
+    "terser-webpack-plugin": "^1.1.0",
+    "url-loader": "^1.1.2",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.24.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dashboard": "^2.0.0",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-manifest-plugin": "^2.0.4",
+    "webpack-merge": "^4.1.4",
+    "webpack-notifier": "^1.7.0",
+    "write-file-webpack-plugin": "^4.4.1"
   },
   "browserslist": {
     "production": [
       "> 0.25% in US",
-      "> 2%"
+      "> 2%",
+      "IE 11"
     ],
     "legacyBrowsers": [
       "> 0.25% in US",
-      "> 2%"
+      "> 2%",
+      "IE 11"
     ],
     "modernBrowsers": [
       "last 2 Chrome versions",
@@ -75,16 +122,6 @@
       "not Firefox < 54",
       "last 2 Edge versions",
       "not Edge < 15"
-    ]
-  },
-  "babel": {
-    "presets": [
-      [
-        "env",
-        {
-          "modules": false
-        }
-      ]
     ]
   },
   "prettier": {
