@@ -4,17 +4,11 @@ const path = require('path');
 const sane = require('sane');
 const webpack = require('webpack');
 
-// Webpack plugins
-const Dashboard = require('webpack-dashboard');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-
 // Config files
 const LEGACY_CONFIG = 'legacy';
 const MODERN_CONFIG = 'modern';
 const common = require('./webpack.common');
 const settings = require('./webpack.settings');
-
-const dashboard = new Dashboard();
 
 // Configure the webpack-dev-server
 const configureDevServer = buildType => ({
@@ -91,13 +85,13 @@ const configurePostcssLoader = buildType => {
     return {
       test: /\.(pcss|css)$/,
       use: [
-        { loader: 'style-loader' },
-        { loader: 'vue-style-loader' },
+        { loader: 'style-loader', options: { sourceMap: true } },
+        { loader: 'vue-style-loader', options: { sourceMap: true } },
         { loader: 'css-loader', options: { importLoaders: 2, sourceMap: true } },
         { loader: 'resolve-url-loader' },
         {
           loader: 'postcss-loader',
-          options: { sourceMap: true, plugins: settings.postcssPlugins },
+          options: { sourceMap: 'inline', plugins: settings.postcssPlugins },
         },
       ],
     };
@@ -130,6 +124,6 @@ module.exports = [
     module: {
       rules: [configurePostcssLoader(MODERN_CONFIG), configureImageLoader(MODERN_CONFIG)],
     },
-    plugins: [new webpack.HotModuleReplacementPlugin(), new DashboardPlugin(dashboard.setData)],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
   }),
 ];

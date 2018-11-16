@@ -25,13 +25,21 @@ module.exports = {
     },
     templates: './dist/templates/',
   },
+  vars: {
+    cssName: 'main',
+  },
   entries: {
+    initial: 'initial.js',
     main: 'main.js',
   },
   copyWebpackConfig: [
     {
       from: './src/templates',
       to: path.resolve(__dirname, '../dist/templates'),
+    },
+    {
+      from: './src/images',
+      to: 'images',
     },
   ],
   postcssPlugins: {
@@ -50,14 +58,14 @@ module.exports = {
     },
   ],
   webappConfig: {
-    logo: './src/images/favicon.png',
+    logo: './src/images/favicon.svg',
     prefix: 'images/favicons/',
   },
   manifestConfig: {
-    basePath: 'assets/',
+    basePath: '',
   },
   devServerConfig: {
-    public: 'http://localhost:3000',
+    public: `http://127.0.0.1.xip.io:3000`,
     host: '0.0.0.0',
     poll: false,
     port: 3000,

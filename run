@@ -63,7 +63,7 @@ case "$1" in
         ;;
 
     "watch")
-        open "http://${IP}.xip.io:8080"
+        open "http://127.0.0.1.xip.io:8080"
         ${EXEC} yarn watch
         ;;
 

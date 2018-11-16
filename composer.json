@@ -12,15 +12,15 @@
   "type": "project",
   "require": {
     "aelvan/imager": "^2.1",
-    "craftcms/cms": "^3.1.0-dev",
+    "craftcms/cms": "^3.0",
     "craftcms/redactor": "^2.0",
     "nystudio107/craft-seomatic": "3.1.23",
     "nystudio107/craft-twigpack": "^1.1",
     "nystudio107/craft-typogrify": "^1.1",
     "roave/security-advisories": "dev-master",
     "verbb/expanded-singles": "^1.0",
-    "vlucas/phpdotenv": "^2.4.0",
-    "yiisoft/yii2-redis": "^2.0.6"
+    "vlucas/phpdotenv": "^2.4",
+    "yiisoft/yii2-redis": "^2.0"
   },
   "prefer-stable": true,
   "minimum-stability": "dev",

@@ -6,6 +6,7 @@ const merge = require('webpack-merge');
 // webpack plugins
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
@@ -15,9 +16,6 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const pkg = require('../package.json');
 const settings = require('./webpack.settings');
 
-const LEGACY_CONFIG = 'legacy';
-const MODERN_CONFIG = 'modern';
-
 // Configure Babel loader
 const configureBabelLoader = browserList => ({
   test: /\.js$/,
@@ -26,7 +24,7 @@ const configureBabelLoader = browserList => ({
     options: {
       presets: [
         [
-          '@babel/env',
+          '@babel/preset-env',
           {
             modules: false,
             useBuiltIns: 'entry',
@@ -67,12 +65,13 @@ const configureFontLoader = () => ({
 // Configure Manifest
 const configureManifest = fileName => ({
   fileName,
+  // publicPath: settings.paths.root,
   basePath: settings.manifestConfig.basePath,
   filter: file => !file.name.includes('../../templates'),
-  map: file => {
-    file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
-    return file;
-  },
+  // map: file => {
+  //   file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
+  //   return file;
+  // },
 });
 
 // Configure Vue loader
@@ -100,7 +99,7 @@ const baseConfig = {
   plugins: [
     new WebpackNotifierPlugin({ title: 'Webpack', excludeWarnings: true, alwaysNotify: true }),
     new VueLoaderPlugin(),
-  new WriteFilePlugin({ test: /..\/templates\/|manifest.*\.json/ }),
+    new WriteFilePlugin({ test: /..\/templates\/|manifest.*\.json/ }),
   ],
 };
 

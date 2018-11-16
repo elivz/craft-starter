@@ -15,12 +15,12 @@ return [
     // Public server config
     'server' => [
       'manifestPath' => '@webroot/assets',
-      'publicPath' => '@web/assets',
+      'publicPath' => '@web',
     ],
     // webpack-dev-server config
     'devServer' => [
       'manifestPath' => 'http://localhost:8080/assets',
-      'publicPath' => 'http://localhost:8080/assets',
+      'publicPath' => 'http://localhost:8080',
     ],
   ],
   // Live (production) environment

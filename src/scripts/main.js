@@ -1,4 +1,3 @@
-import /* webpackChunkName: "initial" */ 'lazysizes';
 import reframe from 'reframe.js';
 import '../styles/main.css';
 import './components/header';

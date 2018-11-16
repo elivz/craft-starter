@@ -29,7 +29,6 @@
         var r=document.getElementsByTagName('script')[0],s=document.createElement('script');s.src=src;r.parentNode.insertBefore(s, r);
       }
       if (!('Promise' in this)) {
-        loadScript('https://cdn.polyfill.io/v2/polyfill.min.js?features=~html5-elements,HTMLPictureElement,Element.prototype.classList,Object.assign,Event,Promise');
         loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
       }
     </script>
@@ -90,8 +89,8 @@
       {# Global footer #}
       {% include "_content/global-footer" %}
     </div>
-test
-    {{ craft.twigpack.includeJsModule("assets/main.js", true) }}
+
+    {{ craft.twigpack.includeJsModule("main.js", true) }}
     {{ endBody() }}
   </body>
 </html>
