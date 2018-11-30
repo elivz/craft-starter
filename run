@@ -14,68 +14,68 @@ COMPOSE="docker-compose"
 RUN="${COMPOSE} run -u www-data --no-deps web"
 EXEC="${COMPOSE} exec -u www-data web"
 
-export IP="$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk '{print $2}')"
+export IP="$(ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | awk 'NR==1{print $2}')"
 
 cd config
 
 case "$1" in
-    "init")
-        ../run build
-        ../run update
-        ;;
+  "init")
+    ../run build
+    ../run update
+    ;;
 
-    "build")
-        echo "🏁  ${green}Initializing Docker images${reset}"
-        ${COMPOSE} pull
-        ${COMPOSE} build
-        ;;
+  "build")
+    echo "🏁  ${green}Initializing Docker images${reset}"
+    ${COMPOSE} pull
+    ${COMPOSE} build
+    ;;
 
-    "update")
-        if [ -f ../package.json ]; then
-            echo "📦  ${green}Updating Node dependencies from package.json${reset}"
-            ${RUN} yarn
-        fi
-        if [ -f ../composer.json ]; then
-            echo "📦  ${green}Updating PHP dependencies from composer.json${reset}"
-            ${RUN} composer update
-        fi
-        ;;
+  "update")
+    if [ -f ../package.json ]; then
+        echo "📦  ${green}Updating Node dependencies from package.json${reset}"
+        ${RUN} yarn upgrade
+    fi
+    if [ -f ../composer.json ]; then
+        echo "📦  ${green}Updating PHP dependencies from composer.json${reset}"
+        ${RUN} composer update
+    fi
+    ;;
 
-    "start")
-        echo "${green}Starting your Docker images${reset}"
-        ${COMPOSE} up -d
-        echo "✅  Run ${green}./run watch${reset} to begin work!"
-        ;;
+  "start")
+    echo "${green}Starting your Docker images${reset}"
+    ${COMPOSE} up -d
+    echo "✅  Run ${green}./run watch${reset} to begin work!"
+    ;;
 
-    "stop")
-        echo "🛑  ${red}Killing your Docker images${reset}"
-        ${COMPOSE} down
-        ;;
+  "stop")
+    echo "🛑  ${red}Killing your Docker images${reset}"
+    ${COMPOSE} down
+    ;;
 
-    "logs")
-        ${COMPOSE} logs
-        ;;
+  "logs")
+    ${COMPOSE} logs
+    ;;
 
-    "sync")
-        echo "☁️  ${green}Pulling assets and database from the remote server${reset}"
-        ./scripts/pull_db.sh
-        ./scripts/pull_assets.sh
-        ;;
+  "sync")
+    echo "☁️  ${green}Pulling assets and database from the remote server${reset}"
+    ./scripts/pull_db.sh
+    ./scripts/pull_assets.sh
+    ;;
 
-    "watch")
-        open "http://127.0.0.1.xip.io:8080"
-        ${EXEC} yarn watch
-        ;;
+  "watch")
+    open "http://${IP}.xip.io:8080"
+    ${EXEC} yarn watch
+    ;;
 
-    "production")
-        ${EXEC} yarn build
-        ;;
+  "production")
+    ${EXEC} yarn build
+    ;;
 
-    "lint")
-        ${EXEC} yarn lint
-        ;;
+  "lint")
+    ${EXEC} yarn lint
+    ;;
 
-    *)
-        ${EXEC} "$@"
-        ;;
+  *)
+    ${EXEC} "$@"
+
 esac
