@@ -12,9 +12,10 @@
   "type": "project",
   "require": {
     "aelvan/imager": "^2.1",
-    "craftcms/cms": "^3.0",
+    "craftcms/cms": "^3.1.0-beta1",
     "craftcms/redactor": "^2.0",
-    "nystudio107/craft-seomatic": "3.1.23",
+    "nystudio107/craft-minify": "1.2.9",
+    "nystudio107/craft-seomatic": "^3.1",
     "nystudio107/craft-twigpack": "^1.1",
     "nystudio107/craft-typogrify": "^1.1",
     "roave/security-advisories": "dev-master",
@@ -23,7 +24,7 @@
     "yiisoft/yii2-redis": "^2.0"
   },
   "prefer-stable": true,
-  "minimum-stability": "dev",
+  "minimum-stability": "beta",
   "autoload": {
     "psr-4": {
       "modules\\": "modules/"
@@ -43,6 +44,12 @@
       "@php -r \"unlink('LICENSE.md');\"",
       "@composer dump-autoload -o",
       "@php craft setup/welcome"
+    ],
+    "post-install-cmd": [
+      "dist/craft migrate/all"
+    ],
+    "post-update-cmd": [
+      "dist/craft migrate/all"
     ]
   }
 }

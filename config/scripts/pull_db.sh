@@ -47,9 +47,9 @@ fi
 LOCAL_DB_CREDS+="${DB_NAME}"
 
 # Database commands
-LOCAL_MYSQL_CMD="docker exec -i config_db_1 mysql"
-LOCAL_MYSQLDUMP_CMD="mysqldump"
-REMOTE_MYSQLDUMP_CMD="docker exec -i config_db_1 mysqldump"
+LOCAL_MYSQL_CMD="docker-compose exec -T db mysql"
+LOCAL_MYSQLDUMP_CMD="docker-compose exec -T db mysqldump"
+REMOTE_MYSQLDUMP_CMD="mysqldump"
 
 # Additional mysqldump arguments
 MYSQLDUMP_ARGS="--single-transaction --routines --triggers --events --add-drop-database "
@@ -59,12 +59,12 @@ TMP_DB_PATH="/tmp/${REMOTE_DB_NAME}-db-dump-$(date '+%Y%m%d').sql"
 BACKUP_DB_PATH="/tmp/${LOCAL_DB_NAME}-db-backup-$(date '+%Y%m%d').sql"
 
 # Get the remote db dump
-ssh $REMOTE_SSH_LOGIN -p $REMOTE_SSH_PORT "$LOCAL_MYSQLDUMP_CMD $REMOTE_DB_CREDS $MYSQLDUMP_ARGS > '$TMP_DB_PATH'"
+ssh $REMOTE_SSH_LOGIN -p $REMOTE_SSH_PORT "$REMOTE_MYSQLDUMP_CMD $REMOTE_DB_CREDS $MYSQLDUMP_ARGS > '$TMP_DB_PATH'"
 scp -C -P $REMOTE_SSH_PORT -- $REMOTE_SSH_LOGIN:"${TMP_DB_PATH}" "${TMP_DB_PATH}"
 echo "Downloaded remote database to ${TMP_DB_PATH}"
 
 # Backup the local db
-$REMOTE_MYSQLDUMP_CMD $LOCAL_DB_CREDS $MYSQLDUMP_ARGS > "$BACKUP_DB_PATH"
+$LOCAL_MYSQLDUMP_CMD $LOCAL_DB_CREDS $MYSQLDUMP_ARGS > "$BACKUP_DB_PATH"
 gzip -f "$BACKUP_DB_PATH"
 echo "Backed up local database to ${BACKUP_DB_PATH}"
 
