@@ -12,9 +12,9 @@ dist/vendor
 
 # DISTRIBUTION FILES
 /dist/templates
-/dist/public_html/*
-!/dist/public_html/.htaccess
-!/dist/public_html/index.php
+/dist/public/*
+!/dist/public/.htaccess
+!/dist/public/index.php
 
 # BUILD FILES
 /node_modules

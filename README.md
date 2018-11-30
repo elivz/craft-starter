@@ -45,7 +45,7 @@ When you are finished working for the day, shut down the server with:
 
 ## Project Tree
 
-    dist/public_html # This will be your webroot
+    dist/public # This will be your webroot
       - assets
         - css     # The compiled CSS files
         - images  # Optimized image files

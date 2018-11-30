@@ -1,4 +1,4 @@
-dateModified: 1543591876
+dateModified: 1543598378
 email:
   fromEmail: eli@elivz.com
   fromName: 'Craft Starter'
@@ -346,6 +346,10 @@ matrixBlockTypes:
     name: Image
     sortOrder: 3
 plugins:
+  assetrev:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
   expanded-singles:
     edition: standard
     enabled: true
@@ -390,7 +394,7 @@ plugins:
       siteGroupsSeparate: '1'
       sitemapsEnabled: '1'
   twigpack:
-    enabled: '1'
+    enabled: false
     licenseKey: null
     schemaVersion: 1.0.0
     settings: null

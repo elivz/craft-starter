@@ -32,7 +32,6 @@
         loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
       }
     </script>
-    {{ craft.twigpack.includeSafariNomoduleFix() }}
 
     {# Typekit embed -#}
     <script>
@@ -50,11 +49,12 @@
     </script>
 
     {# Main Styles -#}
-    {{ craft.twigpack.includeCssModule("main.css") }}
+    <link rel="stylesheet" href="{{ rev('/styles/main.css') }}">
     {% block additionalCss %}{% endblock %}
 
     {# Load javascript files -#}
-    {{ craft.twigpack.includeJsModule('initial.js', true) }}
+    <script src="{{ rev('/scripts/initial.js') }}" async></script>
+    <script src="{{ rev('/scripts/main.js') }}" async defer></script>
 
     {# RSS feed autodiscovery -#}
     <link rel="alternate" type="application/rss+xml" title="{{ siteName }} RSS feed" href="{{ url('blog/feed.rss') }}">
@@ -99,7 +99,6 @@
       {% include "_content/global-footer" %}
     </div>
 
-    {{ craft.twigpack.includeJsModule("main.js", true) }}
     {{ endBody() }}
   </body>
 </html>

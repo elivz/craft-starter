@@ -3,7 +3,7 @@ image: elivz/php
 variables:
   LIVE_SSH_USER: REPLACE_ME
   LIVE_DOMAIN: REPLACE_ME
-  LIVE_ROOT: /var/www/public_html
+  LIVE_ROOT: /var/www/public
   STAGING_SSH_USER: REPLACE_ME
   STAGING_DOMAIN: REPLACE_ME
   STAGING_ROOT: /var/www/staging_html
@@ -27,7 +27,7 @@ stage_deploy:
   only:
     - develop
   script:
-    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public_html/media' --exclude '.env.php' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
+    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public/media' --exclude '.env.php' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
     - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft cache/flush-all"
 
 live_deploy:
@@ -35,5 +35,5 @@ live_deploy:
   only:
     - master
   script:
-    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public_html/media' --exclude '.env.php' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
+    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public/media' --exclude '.env.php' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
     - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft cache/flush-all"

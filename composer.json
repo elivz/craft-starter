@@ -12,11 +12,11 @@
   "type": "project",
   "require": {
     "aelvan/imager": "^2.1",
+    "clubstudioltd/craft-asset-rev": "v6.0.2",
     "craftcms/cms": "^3.1.0-beta1",
     "craftcms/redactor": "^2.0",
     "nystudio107/craft-minify": "1.2.9",
     "nystudio107/craft-seomatic": "^3.1",
-    "nystudio107/craft-twigpack": "^1.1",
     "nystudio107/craft-typogrify": "^1.1",
     "roave/security-advisories": "dev-master",
     "verbb/expanded-singles": "^1.0",
