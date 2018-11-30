@@ -8,7 +8,7 @@ const pkg = require('../package.json');
 // Webpack settings exports
 module.exports = {
   name: pkg.description,
-  copyright: pkg.author,
+  copyright: pkg.author.name,
   paths: {
     root: '/assets/',
     src: {

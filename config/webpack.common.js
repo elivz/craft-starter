@@ -65,13 +65,8 @@ const configureFontLoader = () => ({
 // Configure Manifest
 const configureManifest = fileName => ({
   fileName,
-  // publicPath: settings.paths.root,
   basePath: settings.manifestConfig.basePath,
-  filter: file => !file.name.includes('../../templates'),
-  // map: file => {
-  //   file.name = file.name.replace(/(\.[a-f0-9]{32})(\..*)$/, '$2');
-  //   return file;
-  // },
+  filter: file => !file.name.includes('../../templates') && !file.name.includes('.map'),
 });
 
 // Configure Vue loader
@@ -97,9 +92,10 @@ const baseConfig = {
     rules: [configureFontLoader(), configureVueLoader()],
   },
   plugins: [
+    new HardSourceWebpackPlugin(),
     new WebpackNotifierPlugin({ title: 'Webpack', excludeWarnings: true, alwaysNotify: true }),
     new VueLoaderPlugin(),
-    new WriteFilePlugin({ test: /..\/templates\/|manifest.*\.json/ }),
+    new WriteFilePlugin({ test: /..\/templates\/|images\/|manifest.*\.json/ }),
   ],
 };
 

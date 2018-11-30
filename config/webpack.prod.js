@@ -75,51 +75,17 @@ const configureHtml = () => ({
 });
 
 // Configure Image loader
-const configureImageLoader = buildType => {
-  if (buildType === LEGACY_CONFIG) {
-    return {
-      test: /\.(png|jpe?g|gif|svg|webp)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: 'img/[name].[hash].[ext]',
-          },
+const configureImageLoader = buildType => ({
+    test: /\.(png|jpe?g|gif|svg|webp)$/i,
+    use: [
+      {
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[hash].[ext]',
         },
-      ],
-    };
-  }
-  if (buildType === MODERN_CONFIG) {
-    return {
-      test: /\.(png|jpe?g|gif|svg|webp)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: 'img/[name].[hash].[ext]',
-          },
-        },
-        {
-          loader: 'img-loader',
-          options: {
-            plugins: [
-              require('imagemin-mozjpeg')({
-                progressive: true,
-                arithmetic: false,
-              }),
-              require('imagemin-optipng')({
-                optimizationLevel: 5,
-              }),
-              require('imagemin-svgo')({
-                plugins: [{ convertPathData: false }],
-              }),
-            ],
-          },
-        },
-      ],
-    };
-  }
-};
+      },
+    ],
+  });
 
 // Configure optimization
 const configureOptimization = buildType => {
