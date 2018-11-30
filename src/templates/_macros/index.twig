@@ -53,7 +53,7 @@
 
 {% macro srcset(image, options={}) %}
   {%- spaceless %}
-    {% if image|length %}
+    {% if image %}
       {# Default options #}
       {% set options = {
         alt: image.title ?? '',
@@ -92,17 +92,34 @@
       {% endif %}
 
       {# Output it to the screen #}
+      <img
+        src="{{ craft.imager.placeholder({
+          type: 'silhouette',
+          source: image,
+          fgColor: '#ddd',
+          width: transformed[options.defaultWidthIndex].width,
+          height: transformed[options.defaultWidthIndex].height
+        }) }}"
+        data-srcset="{{ transformed|length > 1 ? craft.imager.srcset(transformed) : defaultImg }}"
+        alt="{{ options.alt }}"
+        sizes="{{ options.sizes }}"
+        width="{{ transformed[options.defaultWidthIndex].width }}"
+        height="{{ transformed[options.defaultWidthIndex].height }}"
+        class="lazyload {{ options.class ?? '' }}"
+        {{ (options.attr ?? '')|raw }}
+      >
+      <noscript>
         <img
           src="{{ defaultImg }}"
-          srcset="{{ craft.imager.placeholder({ width: transformed[options.defaultWidthIndex].width, height: transformed[options.defaultWidthIndex].height, color: '#575a5d'}) }}"
-          data-srcset="{{ transformed|length > 1 ? craft.imager.srcset(transformed) : defaultImg }}"
+          srcset="{{ transformed|length > 1 ? craft.imager.srcset(transformed) : defaultImg }}"
           alt="{{ options.alt }}"
           sizes="{{ options.sizes }}"
           width="{{ transformed[options.defaultWidthIndex].width }}"
           height="{{ transformed[options.defaultWidthIndex].height }}"
-          class="lazyload {{ options.class ?? '' }}"
+          class="{{ options.class ?? '' }}"
           {{ (options.attr ?? '')|raw }}
         >
+      </noscript>
     {% endif %}
   {% endspaceless -%}
 {% endmacro %}

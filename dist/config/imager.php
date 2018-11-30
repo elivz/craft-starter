@@ -1,9 +1,9 @@
 <?php
 
 return [
-  'filenamePattern' => '{fullname}.{extension}',
+  'filenamePattern' => '{basename}_{transformString|shorthash}',
   'imagerSystemPath' => '@webroot/images/sized/',
-  'imagerUrl' => '/images/sized/',
+  'imagerUrl' => '/media/sized/',
   'suppressExceptions' => true,
   'smartResizeEnabled' => true,
   'removeMetadata' => true,

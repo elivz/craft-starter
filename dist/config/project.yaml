@@ -1,0 +1,552 @@
+dateModified: 1543591876
+email:
+  fromEmail: eli@elivz.com
+  fromName: 'Craft Starter'
+  transportType: craft\mail\transportadapters\Sendmail
+fieldGroups:
+  01970f63-9f9d-43f3-ac30-10574dd3c5fb:
+    name: Posts
+  09499573-4a27-4776-82ea-b1eaa1ce59e3:
+    name: Common
+  2d8214fb-33c3-40cd-831d-c4c0ffdbe73d:
+    name: SEO
+fields:
+  641707d7-090e-4e3e-89a4-3b1772892f78:
+    contentColumnType: text
+    fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
+    handle: intro
+    instructions: ''
+    name: Introduction
+    searchable: true
+    settings:
+      availableTransforms: '*'
+      availableVolumes: '*'
+      cleanupHtml: '1'
+      columnType: text
+      purifierConfig: ''
+      purifyHtml: '1'
+      redactorConfig: Simple.json
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\redactor\Field
+  ab818467-690e-4942-b256-f32c13c016f7:
+    contentColumnType: string
+    fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
+    handle: featuredImage
+    instructions: ''
+    name: 'Featured Image'
+    searchable: true
+    settings:
+      allowedKinds:
+        - image
+      defaultUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+      defaultUploadLocationSubpath: ''
+      limit: '1'
+      localizeRelations: false
+      restrictFiles: '1'
+      selectionLabel: 'Select image'
+      singleUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+      singleUploadLocationSubpath: ''
+      source: null
+      sources:
+        - 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+      targetSiteId: null
+      useSingleFolder: ''
+      viewMode: large
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Assets
+  bf181bad-4dfb-4017-a055-f2cadcabf68e:
+    contentColumnType: text
+    fieldGroup: 01970f63-9f9d-43f3-ac30-10574dd3c5fb
+    handle: summary
+    instructions: ''
+    name: Summary
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '2'
+      multiline: '1'
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
+  e827e435-8b27-4096-b1ba-b19b55274412:
+    contentColumnType: string
+    fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
+    handle: mainContent
+    instructions: ''
+    name: 'Main Content'
+    searchable: true
+    settings:
+      contentTable: '{{%matrixcontent_maincontent}}'
+      localizeBlocks: false
+      maxBlocks: ''
+      minBlocks: ''
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Matrix
+  fe664bbd-e264-46ad-b2d4-6a051a8b2450:
+    contentColumnType: text
+    fieldGroup: 2d8214fb-33c3-40cd-831d-c4c0ffdbe73d
+    handle: seo
+    instructions: ''
+    name: 'SEO Overrides'
+    searchable: true
+    settings:
+      elementDisplayPreviewType: google
+      facebookTabEnabled: ''
+      generalEnabledFields:
+        - seoTitle
+        - seoDescription
+        - seoImage
+      generalTabEnabled: '1'
+      sitemapTabEnabled: ''
+      twitterTabEnabled: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: nystudio107\seomatic\fields\SeoSettings
+matrixBlockTypes:
+  381ca5c9-db4d-47d7-8cf1-c768ddb8817a:
+    field: e827e435-8b27-4096-b1ba-b19b55274412
+    fieldLayouts:
+      ea6568ef-8ae9-46dc-95c1-945e758cfac3:
+        tabs:
+          -
+            fields:
+              a9b3ef3c-863f-43d4-8f5d-adbda595ea17:
+                required: false
+                sortOrder: 2
+              fdac51e8-cfbf-4a7b-b90b-eafa4d215490:
+                required: true
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
+    fields:
+      a9b3ef3c-863f-43d4-8f5d-adbda595ea17:
+        contentColumnType: text
+        fieldGroup: null
+        handle: attribution
+        instructions: ''
+        name: Attribution
+        searchable: true
+        settings:
+          charLimit: ''
+          code: ''
+          columnType: text
+          initialRows: '4'
+          multiline: ''
+          placeholder: ''
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\fields\PlainText
+      fdac51e8-cfbf-4a7b-b90b-eafa4d215490:
+        contentColumnType: text
+        fieldGroup: null
+        handle: text
+        instructions: ''
+        name: Text
+        searchable: true
+        settings:
+          availableTransforms: '*'
+          availableVolumes: '*'
+          cleanupHtml: '1'
+          columnType: text
+          purifierConfig: ''
+          purifyHtml: '1'
+          redactorConfig: Simple.json
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\redactor\Field
+    handle: quote
+    name: Quote
+    sortOrder: 4
+  9e4591fd-5d56-4748-901c-cc3a54284928:
+    field: e827e435-8b27-4096-b1ba-b19b55274412
+    fieldLayouts:
+      f39d6c11-14b2-4381-ab69-cd1c7811d1e7:
+        tabs:
+          -
+            fields:
+              a1c34501-fce1-4212-b873-db0b3f8f8689:
+                required: true
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
+    fields:
+      a1c34501-fce1-4212-b873-db0b3f8f8689:
+        contentColumnType: text
+        fieldGroup: null
+        handle: text
+        instructions: ''
+        name: Text
+        searchable: true
+        settings:
+          charLimit: ''
+          code: ''
+          columnType: text
+          initialRows: '4'
+          multiline: ''
+          placeholder: ''
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\fields\PlainText
+    handle: heading
+    name: Heading
+    sortOrder: 1
+  b3b81133-00c4-449f-9fd7-c105855d1408:
+    field: e827e435-8b27-4096-b1ba-b19b55274412
+    fieldLayouts:
+      7fe12cd2-f9f8-4ac8-bbc7-39ea5565a2d7:
+        tabs:
+          -
+            fields:
+              621a4e81-9037-4120-bd66-c0cfa516a84e:
+                required: true
+                sortOrder: 2
+              eb9c1824-365b-4fb7-b85c-caebf3171ce1:
+                required: false
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
+    fields:
+      621a4e81-9037-4120-bd66-c0cfa516a84e:
+        contentColumnType: text
+        fieldGroup: null
+        handle: text
+        instructions: ''
+        name: Text
+        searchable: true
+        settings:
+          availableTransforms: '*'
+          availableVolumes: '*'
+          cleanupHtml: '1'
+          columnType: text
+          purifierConfig: ''
+          purifyHtml: '1'
+          redactorConfig: Standard.json
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\redactor\Field
+      eb9c1824-365b-4fb7-b85c-caebf3171ce1:
+        contentColumnType: text
+        fieldGroup: null
+        handle: subheading
+        instructions: ''
+        name: Subheading
+        searchable: true
+        settings:
+          charLimit: ''
+          code: ''
+          columnType: text
+          initialRows: '4'
+          multiline: ''
+          placeholder: ''
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\fields\PlainText
+    handle: text
+    name: Text
+    sortOrder: 2
+  bcc384a8-e642-4fd9-9fc2-cb796bda0fb0:
+    field: e827e435-8b27-4096-b1ba-b19b55274412
+    fieldLayouts:
+      94372da5-c73b-4cb6-9d94-adccf11f15fc:
+        tabs:
+          -
+            fields:
+              43226ea7-b9e9-4450-99fa-a7cbe979d536:
+                required: true
+                sortOrder: 1
+              5be9b580-996f-450b-8056-0a9e0abf869f:
+                required: false
+                sortOrder: 3
+              e8ed388c-e388-4a9b-8d74-6121926c9122:
+                required: false
+                sortOrder: 2
+            name: Content
+            sortOrder: 1
+    fields:
+      43226ea7-b9e9-4450-99fa-a7cbe979d536:
+        contentColumnType: string
+        fieldGroup: null
+        handle: image
+        instructions: ''
+        name: Image
+        searchable: true
+        settings:
+          allowedKinds:
+            - image
+          defaultUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+          defaultUploadLocationSubpath: ''
+          limit: '1'
+          localizeRelations: false
+          restrictFiles: '1'
+          selectionLabel: 'Select image'
+          singleUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+          singleUploadLocationSubpath: ''
+          source: null
+          sources:
+            - 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+          targetSiteId: null
+          useSingleFolder: ''
+          viewMode: large
+        translationKeyFormat: null
+        translationMethod: site
+        type: craft\fields\Assets
+      5be9b580-996f-450b-8056-0a9e0abf869f:
+        contentColumnType: string
+        fieldGroup: null
+        handle: position
+        instructions: ''
+        name: Position
+        searchable: true
+        settings:
+          options:
+            -
+              default: '1'
+              label: Full-width
+              value: full
+            -
+              default: ''
+              label: Centered
+              value: center
+            -
+              default: ''
+              label: Left
+              value: left
+            -
+              default: ''
+              label: Right
+              value: right
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\fields\Dropdown
+      e8ed388c-e388-4a9b-8d74-6121926c9122:
+        contentColumnType: text
+        fieldGroup: null
+        handle: caption
+        instructions: ''
+        name: Caption
+        searchable: true
+        settings:
+          availableTransforms: '*'
+          availableVolumes: '*'
+          cleanupHtml: '1'
+          columnType: text
+          purifierConfig: ''
+          purifyHtml: '1'
+          redactorConfig: Simple.json
+        translationKeyFormat: null
+        translationMethod: none
+        type: craft\redactor\Field
+    handle: image
+    name: Image
+    sortOrder: 3
+plugins:
+  expanded-singles:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+    settings:
+      expandSingles: '1'
+      redirectToEntry: '1'
+  imager:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 2.0.0
+    settings: null
+  minify:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  redactor:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 2.0.0
+    settings: null
+  seomatic:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 3.0.6
+    settings:
+      addHrefLang: '1'
+      cpTitlePrefix: ''
+      devModeCpTitlePrefix: '&#x1f6a7; '
+      devModeTitlePrefix: '&#x1f6a7; '
+      displayAnalysisSidebar: true
+      displayPreviewSidebar: '1'
+      environment: live
+      generatorEnabled: '1'
+      headersEnabled: '1'
+      maxDescriptionLength: '155'
+      maxTitleLength: '70'
+      pluginName: SEO
+      regenerateSitemapsAutomatically: '1'
+      renderEnabled: '1'
+      separatorChar: '|'
+      siteGroupsSeparate: '1'
+      sitemapsEnabled: '1'
+  twigpack:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 1.0.0
+    settings: null
+  typogrify:
+    enabled: '1'
+    licenseKey: null
+    schemaVersion: 1.0.0
+    settings: null
+sections:
+  45633958-9526-4ef0-89eb-f9f19a67ccdf:
+    enableVersioning: true
+    entryTypes:
+      6d6440e9-5660-46d6-827a-ed4a13774a3b:
+        handle: pages
+        hasTitleField: true
+        name: Pages
+        sortOrder: 1
+        titleFormat: null
+        titleLabel: Title
+      fd44adc9-74db-4bc1-9ed7-a824688bde1f:
+        fieldLayouts:
+          794511ac-6aa9-4385-ba3d-e5d110d26038:
+            tabs:
+              -
+                fields:
+                  ab818467-690e-4942-b256-f32c13c016f7:
+                    required: false
+                    sortOrder: 2
+                  bf181bad-4dfb-4017-a055-f2cadcabf68e:
+                    required: true
+                    sortOrder: 1
+                  e827e435-8b27-4096-b1ba-b19b55274412:
+                    required: true
+                    sortOrder: 3
+                name: Content
+                sortOrder: 1
+        handle: pages
+        hasTitleField: true
+        name: Pages
+        sortOrder: 1
+        titleFormat: ''
+        titleLabel: Title
+    handle: pages
+    name: Pages
+    propagateEntries: true
+    siteSettings:
+      7ee499f4-5195-4a04-8f4e-16f1ee76449a:
+        enabledByDefault: true
+        hasUrls: true
+        template: _pages/index
+        uriFormat: '{parent.uri}/{slug}'
+    structure:
+      maxLevels: '2'
+      uid: bff4e668-cd72-4f15-a70b-12a3ed0eb0ad
+    type: structure
+  7d3de048-2fb4-485e-ad6d-a56acb91e7d2:
+    enableVersioning: '1'
+    entryTypes:
+      5a9c66b2-9bc2-4210-bf76-75062587181e:
+        fieldLayouts:
+          9ab8eb6e-10b5-451c-bc58-6831a96d4b71:
+            tabs:
+              -
+                fields:
+                  641707d7-090e-4e3e-89a4-3b1772892f78:
+                    required: true
+                    sortOrder: 2
+                  ab818467-690e-4942-b256-f32c13c016f7:
+                    required: true
+                    sortOrder: 1
+                name: Content
+                sortOrder: 1
+              -
+                fields:
+                  fe664bbd-e264-46ad-b2d4-6a051a8b2450:
+                    required: false
+                    sortOrder: 1
+                name: SEO
+                sortOrder: 2
+        handle: homepage
+        hasTitleField: false
+        name: Homepage
+        sortOrder: 1
+        titleFormat: '{section.name|raw}'
+        titleLabel: ''
+    handle: homepage
+    name: Homepage
+    propagateEntries: '1'
+    siteSettings:
+      7ee499f4-5195-4a04-8f4e-16f1ee76449a:
+        enabledByDefault: '1'
+        hasUrls: '1'
+        template: _pages/home
+        uriFormat: __home__
+    type: single
+  d15bccb6-5e9f-4b01-a86c-63e32b053018:
+    enableVersioning: true
+    entryTypes:
+      68d94bd5-b4e3-4737-86b6-fa544bca07a9:
+        handle: posts
+        hasTitleField: true
+        name: 'Blog Posts'
+        sortOrder: 1
+        titleFormat: null
+        titleLabel: Title
+    handle: posts
+    name: 'Blog Posts'
+    propagateEntries: true
+    siteSettings:
+      7ee499f4-5195-4a04-8f4e-16f1ee76449a:
+        enabledByDefault: true
+        hasUrls: true
+        template: blog/_entry
+        uriFormat: 'blog/{slug}'
+    type: channel
+siteGroups:
+  ddc6a34a-a42f-4621-adea-26920085b62f:
+    name: 'Craft Starter'
+sites:
+  7ee499f4-5195-4a04-8f4e-16f1ee76449a:
+    baseUrl: '@web/'
+    handle: default
+    hasUrls: '1'
+    language: en-US
+    name: 'Craft Starter'
+    primary: '1'
+    siteGroup: ddc6a34a-a42f-4621-adea-26920085b62f
+    sortOrder: '1'
+system:
+  edition: solo
+  live: true
+  name: 'Craft Starter'
+  schemaVersion: 3.1.8
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: ''
+  photoVolumeUid: null
+  requireEmailVerification: true
+volumes:
+  307f3fab-17cc-4ad5-b69e-ea6c7574067d:
+    handle: documents
+    hasUrls: true
+    name: Documents
+    settings:
+      path: '@webroot/media/documents'
+    sortOrder: 1
+    type: craft\volumes\Local
+    url: '@web/media/documents'
+  ae5a1875-1b44-4250-babb-6180a11c226f:
+    handle: images
+    hasUrls: true
+    name: Images
+    settings:
+      path: '@webroot/media/images'
+    sortOrder: 1
+    type: craft\volumes\Local
+    url: '@web/media/images'

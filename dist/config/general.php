@@ -13,25 +13,21 @@ return [
         'siteUrl' =>  '@web',
         'cpTrigger' => 'siteadmin',
         'securityKey' => getenv('SECURITY_KEY'),
+        'useProjectConfigFile' => true,
         'omitScriptNameInUrls' => true,
         'usePathInfo' => true,
         'useEmailAsUsername' => true,
         'maxUploadFileSize' => 67108864,
-
-        // Aliases parsed in sites’ settings, volumes’ settings, and Local volumes’ settings
-        'aliases' => [
-            '@basePath' => getenv('BASE_PATH'),
-            '@baseUrl' => getenv('BASE_URL'),
-        ],
     ],
 
     // Live (production) environment
     'live' => [
         'allowUpdates' => false,
         'devMode' => false,
+        'allowAdminChanges' => false,
         'enableTemplateCaching' => true,
         'backupOnUpdate' => true,
-        'isSystemOn' => true,
+        'isSystemLive' => true,
     ],
 
     // Staging (pre-production) environment
@@ -40,7 +36,7 @@ return [
         'devMode' => true,
         'enableTemplateCaching' => true,
         'backupOnUpdate' => true,
-        'isSystemOn' => true,
+        'isSystemLive' => true,
     ],
 
     // Local (development) environment
@@ -49,6 +45,6 @@ return [
         'devMode' => true,
         'enableTemplateCaching' => false,
         'backupOnUpdate' => false,
-        'isSystemOn' => true,
+        'isSystemLive' => true,
     ],
 ];
