@@ -1,6 +1,6 @@
 {% import '_macros' as m %}
 
-<article class="post-thumb" data-animate>
+<article class="post-thumb">
   <a href="{{ post.url }}">
     <figure class="post-thumb__image">
       {{ m.srcset(post.featuredImage.one(), {
@@ -10,9 +10,10 @@
         },
       }) }}
     </figure>
-    <h2>{{ post.title|typogrify }}</h2>
-    {{ m.date(post.postDate) }}
+    <header>
+      <h2>{{ post.title|typogrify }}</h2>
+      {{ m.date(post.postDate) }}
+    </header>
     {{ post.summary|typogrify }}
-    <b>Read more</b>
   </a>
 </li>

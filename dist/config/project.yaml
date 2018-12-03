@@ -1,4 +1,4 @@
-dateModified: 1543598378
+dateModified: 1543613561
 email:
   fromEmail: eli@elivz.com
   fromName: 'Craft Starter'
@@ -527,7 +527,7 @@ system:
   edition: solo
   live: true
   name: 'Craft Starter'
-  schemaVersion: 3.1.8
+  schemaVersion: 3.1.9
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false

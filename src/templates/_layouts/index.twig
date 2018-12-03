@@ -22,20 +22,20 @@
 
     {# Initialize polyfills -#}
     <script>
-      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
-
-      {# Polyfill other modern JS methods -#}
-      function loadScript(src) {
-        var r=document.getElementsByTagName('script')[0],s=document.createElement('script');s.src=src;r.parentNode.insertBefore(s, r);
-      }
-      if (!('Promise' in this)) {
-        loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
-      }
-    </script>
-
-    {# Typekit embed -#}
-    <script>
       (function(d) {
+        d.documentElement.className = d.documentElement.className.replace('no-js', 'js');
+
+        function loadScript(src) {
+          var r=d.getElementsByTagName('script')[0],s=d.createElement('script');
+          s.async=true,s.src=src;r.parentNode.insertBefore(s,r);
+        }
+
+        {# Polyfill other modern JS methods -#}
+        if (typeof window.matchMedia === 'undefined' && typeof window.msMatchMedia === 'undefined')) {
+          loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
+        }
+
+        {# Typekit embed -#}
         var config = { kitId: 'xxxxxx', scriptTimeout: 3000, async: true },
         h=d.documentElement,t=setTimeout(function(){
         h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},
@@ -50,7 +50,6 @@
 
     {# Main Styles -#}
     <link rel="stylesheet" href="{{ rev('/styles/main.css') }}">
-    {% block additionalCss %}{% endblock %}
 
     {# Load javascript files -#}
     <script src="{{ rev('/scripts/initial.js') }}" async></script>
@@ -71,24 +70,32 @@
     <meta name="apple-mobile-web-app-title" content="{{ siteName }}">
     <meta name="application-name" content="{{ siteName }}">
     <meta name="theme-color" content="#f7f7f7">
+
+    {% block htmlHead %}{% endblock %}
   </head>
 
   <body class="{{ bodyClass ?? '' }}">
     {{ beginBody() }}
 
-    <a href="#main" class="skip-link no-smooth-scroll">Skip to main content</a>
+    <a href="#main" class="skip-link no-smooth-scroll">Skip to content</a>
 
     <!--[if lt IE 11]>
       <div class="browserupgrade">
-        You are using an <strong>outdated</strong> browser.
-        Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a>
+        to improve your experience and security.
       </div>
     <![endif]-->
 
+    {% block top %}{% endblock %}
+
     <div class="container">
       {# Global website header, including navigation #}
-      {% include "_content/global-header" %}
+      {% block header %}
+        {% include "_content/global-header" %}
+      {% endblock %}
 
+      {# Main body content of page #}
       <main id="main" class="page-content" tabindex="-1">
         {% block content %}
           {% include ["_content/body-#{entry.slug}", '_content/body-default'] %}
@@ -96,8 +103,12 @@
       </main>
 
       {# Global footer #}
-      {% include "_content/global-footer" %}
+      {% block footer %}
+        {% include "_content/global-footer" %}
+      {% endblock %}
     </div>
+
+    {% block bottom %}{% endblock %}
 
     {{ endBody() }}
   </body>

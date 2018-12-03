@@ -39,8 +39,6 @@ npm-debug.log
 *.sublime-workspace
 *.sublime-project
 *.tmp
-*.tmproj
-*.tmproject
 
 # KEEP EMPTY FOLDERS
 !.gitkeep

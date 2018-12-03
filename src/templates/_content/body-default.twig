@@ -1,7 +1,7 @@
-{% import '_macros' as m %}
-
 <article class="page">
+  <h1>{{ entry.title }}</h1>
+
   {% for block in entry.mainContent.all() %}
-    {% include "_components/block-" ~ block.type ignore missing %}
+    {% include "_components/block-" ~ block.type ignore missing with { self: block } only %}
   {% endfor %}
 </article>

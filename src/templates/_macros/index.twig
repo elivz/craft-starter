@@ -72,7 +72,7 @@
         {% if width <= originalWidth %}
           {% set transforms = transforms|merge([{ width: width }]) %}
         {% elseif loop.first %}
-          {% set transforms = transforms|merge([{ width: originalWidth*1 }]) %}
+          {% set transforms = transforms|merge([{ width: originalWidth * 1 }]) %}
         {% endif %}
       {% endfor %}
 
