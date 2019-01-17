@@ -1,4 +1,16 @@
-dateModified: 1547738141
+categoryGroups:
+  5ddc1a7b-7b62-4b99-9058-99185f06d087:
+    handle: blogTopics
+    name: 'Blog Topics'
+    siteSettings:
+      7ee499f4-5195-4a04-8f4e-16f1ee76449a:
+        hasUrls: true
+        template: blog/_archive
+        uriFormat: 'blog/{slug}'
+    structure:
+      maxLevels: null
+      uid: 4b7b2774-e977-4018-8773-3dd032342799
+dateModified: 1547738632
 email:
   fromEmail: eli@elivz.com
   fromName: 'Craft Starter'
@@ -10,7 +22,26 @@ fieldGroups:
     name: Common
   2d8214fb-33c3-40cd-831d-c4c0ffdbe73d:
     name: SEO
+  e7ab9e9e-7738-445d-b3d9-189d9205efb2:
+    name: Assets
 fields:
+  502ad949-a8cd-49fb-b302-4f2232a10a88:
+    contentColumnType: text
+    fieldGroup: e7ab9e9e-7738-445d-b3d9-189d9205efb2
+    handle: assetCredit
+    instructions: ''
+    name: Credit
+    searchable: true
+    settings:
+      charLimit: ''
+      code: ''
+      columnType: text
+      initialRows: '4'
+      multiline: ''
+      placeholder: ''
+    translationKeyFormat: null
+    translationMethod: none
+    type: craft\fields\PlainText
   641707d7-090e-4e3e-89a4-3b1772892f78:
     contentColumnType: text
     fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
@@ -181,7 +212,7 @@ matrixBlockTypes:
         fieldGroup: null
         handle: text
         instructions: ''
-        name: Text
+        name: __blank__
         searchable: true
         settings:
           charLimit: ''
@@ -217,7 +248,7 @@ matrixBlockTypes:
         fieldGroup: null
         handle: text
         instructions: ''
-        name: Text
+        name: __blank__
         searchable: true
         settings:
           availableTransforms: '*'
@@ -371,6 +402,10 @@ plugins:
     licenseKey: null
     schemaVersion: 2.2.1
     settings: null
+  retour:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.6
   seomatic:
     enabled: '1'
     licenseKey: null
@@ -408,11 +443,34 @@ sections:
     enableVersioning: true
     entryTypes:
       6d6440e9-5660-46d6-827a-ed4a13774a3b:
+        fieldLayouts:
+          4f10c8f2-e446-4f5f-8bf4-eff18b9a0c42:
+            tabs:
+              -
+                fields:
+                  641707d7-090e-4e3e-89a4-3b1772892f78:
+                    required: false
+                    sortOrder: 2
+                  ab818467-690e-4942-b256-f32c13c016f7:
+                    required: false
+                    sortOrder: 1
+                  e827e435-8b27-4096-b1ba-b19b55274412:
+                    required: true
+                    sortOrder: 3
+                name: Content
+                sortOrder: 1
+              -
+                fields:
+                  fe664bbd-e264-46ad-b2d4-6a051a8b2450:
+                    required: false
+                    sortOrder: 1
+                name: SEO
+                sortOrder: 2
         handle: pages
         hasTitleField: true
         name: Pages
         sortOrder: 1
-        titleFormat: null
+        titleFormat: ''
         titleLabel: Title
       fd44adc9-74db-4bc1-9ed7-a824688bde1f:
         fieldLayouts:
@@ -494,11 +552,34 @@ sections:
     enableVersioning: true
     entryTypes:
       68d94bd5-b4e3-4737-86b6-fa544bca07a9:
-        handle: posts
+        fieldLayouts:
+          67356117-e353-4b06-b5e0-541ac9a27017:
+            tabs:
+              -
+                fields:
+                  ab818467-690e-4942-b256-f32c13c016f7:
+                    required: false
+                    sortOrder: 2
+                  bf181bad-4dfb-4017-a055-f2cadcabf68e:
+                    required: true
+                    sortOrder: 1
+                  e827e435-8b27-4096-b1ba-b19b55274412:
+                    required: true
+                    sortOrder: 3
+                name: Content
+                sortOrder: 1
+              -
+                fields:
+                  fe664bbd-e264-46ad-b2d4-6a051a8b2450:
+                    required: false
+                    sortOrder: 1
+                name: SEO
+                sortOrder: 2
+        handle: post
         hasTitleField: true
-        name: 'Blog Posts'
+        name: Post
         sortOrder: 1
-        titleFormat: null
+        titleFormat: ''
         titleLabel: Title
     handle: posts
     name: 'Blog Posts'
@@ -546,11 +627,21 @@ volumes:
     type: craft\volumes\Local
     url: '@web/media/documents'
   ae5a1875-1b44-4250-babb-6180a11c226f:
+    fieldLayouts:
+      2a444fc3-847f-4420-aadb-7a5c1ba764b4:
+        tabs:
+          -
+            fields:
+              502ad949-a8cd-49fb-b302-4f2232a10a88:
+                required: false
+                sortOrder: 1
+            name: Content
+            sortOrder: 1
     handle: images
     hasUrls: true
     name: Images
     settings:
       path: '@webroot/media/images'
-    sortOrder: 1
+    sortOrder: null
     type: craft\volumes\Local
     url: '@web/media/images'
