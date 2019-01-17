@@ -1,0 +1,19 @@
+{# Get all the variables #}
+{% set subheading = self.subheading|striptags|trim ? self.subheading|typogrify : false %}
+{% set text = self.text|striptags|trim ? self.text|typogrify : false %}
+
+{# Output the markup #}
+{% if text or heading %}
+  <div class="mb-8">
+    {% if subheading %}
+      <h3 class="mb-2 font-sans text-md">
+        {{ subheading }}
+      </h3>
+    {% endif %}
+    {% if text %}
+      <div class="c-wysiwyg o-4">
+        {{ text }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

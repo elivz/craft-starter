@@ -1,0 +1,13 @@
+/* Tailwind's setup */
+@import 'tailwindcss/preflight';
+@import 'tailwindcss/components';
+
+/* Styling for generic HTML elements */
+@import 'elements/*';
+
+/* Extracted components */
+@import 'components/*';
+
+/* Utility classes */
+@import 'tailwindcss/utilities';
+@import 'utilities/*';

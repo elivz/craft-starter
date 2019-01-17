@@ -1,0 +1,9 @@
+{# Get all the variables #}
+{% set text = self.text|striptags|trim ? self.text|typogrify(true) : false %}
+
+{# Output the markup #}
+{% if text %}
+  <h2 class="text-xl mb-6 mt-8">
+    {{ text }}
+  </h2>
+{% endif %}

@@ -10,7 +10,7 @@ categoryGroups:
     structure:
       maxLevels: null
       uid: 4b7b2774-e977-4018-8773-3dd032342799
-dateModified: 1547738632
+dateModified: 1547742076
 email:
   fromEmail: eli@elivz.com
   fromName: 'Craft Starter'
@@ -60,6 +60,25 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\redactor\Field
+  805cf346-1bac-401e-9932-4d1c38ab468e:
+    contentColumnType: string
+    fieldGroup: 01970f63-9f9d-43f3-ac30-10574dd3c5fb
+    handle: postTopics
+    instructions: ''
+    name: Topics
+    searchable: true
+    settings:
+      branchLimit: ''
+      limit: null
+      localizeRelations: false
+      selectionLabel: 'Select topic'
+      source: 'group:5ddc1a7b-7b62-4b99-9058-99185f06d087'
+      sources: '*'
+      targetSiteId: null
+      viewMode: null
+    translationKeyFormat: null
+    translationMethod: site
+    type: craft\fields\Categories
   ab818467-690e-4942-b256-f32c13c016f7:
     contentColumnType: string
     fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
@@ -148,10 +167,10 @@ matrixBlockTypes:
           -
             fields:
               a9b3ef3c-863f-43d4-8f5d-adbda595ea17:
-                required: false
+                required: '0'
                 sortOrder: 2
               fdac51e8-cfbf-4a7b-b90b-eafa4d215490:
-                required: true
+                required: '1'
                 sortOrder: 1
             name: Content
             sortOrder: 1
@@ -162,7 +181,7 @@ matrixBlockTypes:
         handle: attribution
         instructions: ''
         name: Attribution
-        searchable: true
+        searchable: '1'
         settings:
           charLimit: ''
           code: ''
@@ -179,7 +198,7 @@ matrixBlockTypes:
         handle: text
         instructions: ''
         name: Text
-        searchable: true
+        searchable: '1'
         settings:
           availableTransforms: '*'
           availableVolumes: '*'
@@ -202,7 +221,7 @@ matrixBlockTypes:
           -
             fields:
               a1c34501-fce1-4212-b873-db0b3f8f8689:
-                required: true
+                required: '1'
                 sortOrder: 1
             name: Content
             sortOrder: 1
@@ -213,7 +232,7 @@ matrixBlockTypes:
         handle: text
         instructions: ''
         name: __blank__
-        searchable: true
+        searchable: '1'
         settings:
           charLimit: ''
           code: ''
@@ -235,10 +254,10 @@ matrixBlockTypes:
           -
             fields:
               621a4e81-9037-4120-bd66-c0cfa516a84e:
-                required: true
+                required: '1'
                 sortOrder: 2
               eb9c1824-365b-4fb7-b85c-caebf3171ce1:
-                required: false
+                required: '0'
                 sortOrder: 1
             name: Content
             sortOrder: 1
@@ -249,7 +268,7 @@ matrixBlockTypes:
         handle: text
         instructions: ''
         name: __blank__
-        searchable: true
+        searchable: '1'
         settings:
           availableTransforms: '*'
           availableVolumes: '*'
@@ -267,7 +286,7 @@ matrixBlockTypes:
         handle: subheading
         instructions: ''
         name: Subheading
-        searchable: true
+        searchable: '1'
         settings:
           charLimit: ''
           code: ''
@@ -289,13 +308,13 @@ matrixBlockTypes:
           -
             fields:
               43226ea7-b9e9-4450-99fa-a7cbe979d536:
-                required: true
+                required: '1'
                 sortOrder: 1
               5be9b580-996f-450b-8056-0a9e0abf869f:
-                required: false
+                required: '0'
                 sortOrder: 3
               e8ed388c-e388-4a9b-8d74-6121926c9122:
-                required: false
+                required: '0'
                 sortOrder: 2
             name: Content
             sortOrder: 1
@@ -306,7 +325,7 @@ matrixBlockTypes:
         handle: image
         instructions: ''
         name: Image
-        searchable: true
+        searchable: '1'
         settings:
           allowedKinds:
             - image
@@ -333,7 +352,7 @@ matrixBlockTypes:
         handle: position
         instructions: ''
         name: Position
-        searchable: true
+        searchable: '1'
         settings:
           options:
             -
@@ -361,7 +380,7 @@ matrixBlockTypes:
         handle: caption
         instructions: ''
         name: Caption
-        searchable: true
+        searchable: '1'
         settings:
           availableTransforms: '*'
           availableVolumes: '*'
@@ -373,8 +392,8 @@ matrixBlockTypes:
         translationKeyFormat: null
         translationMethod: none
         type: craft\redactor\Field
-    handle: image
-    name: Image
+    handle: images
+    name: Images
     sortOrder: 3
 plugins:
   assetrev:
@@ -557,15 +576,18 @@ sections:
             tabs:
               -
                 fields:
+                  805cf346-1bac-401e-9932-4d1c38ab468e:
+                    required: false
+                    sortOrder: 1
                   ab818467-690e-4942-b256-f32c13c016f7:
                     required: false
-                    sortOrder: 2
+                    sortOrder: 3
                   bf181bad-4dfb-4017-a055-f2cadcabf68e:
                     required: true
-                    sortOrder: 1
+                    sortOrder: 2
                   e827e435-8b27-4096-b1ba-b19b55274412:
                     required: true
-                    sortOrder: 3
+                    sortOrder: 4
                 name: Content
                 sortOrder: 1
               -

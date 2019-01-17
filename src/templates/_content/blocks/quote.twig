@@ -1,0 +1,19 @@
+{# Get all the variables #}
+{% set text = self.text|striptags|trim ? self.text|typogrify : false %}
+{% set attribution = self.attribution|striptags|trim ? self.attribution|typogrify : false %}
+
+{# Output the markup #}
+{% if text or heading %}
+  <blockquote class="max-w-48 mx-auto mb-8">
+    {% if text %}
+      <div class="text-md font-italic">
+        {{ text }}
+      </div>
+    {% endif %}
+    {% if attribution %}
+      <footer class="text-sm font-sans">
+        &ndash; {{ attribution }}
+      </footer>
+    {% endif %}
+  </blockquote>
+{% endif %}

@@ -1,0 +1,20 @@
+{% import '_macros' as m %}
+
+{% set caption = caption ?? false %}
+
+{# Output the markup #}
+{% if image is defined and image %}
+  <figure class="relative {{ classes ?? '' }}">
+    {{ m.srcset(image) }}
+    {% if image.assetCredit %}
+      <small class="absolute pin-t pin-r mt-1 mr-2 font-sans text-xs opacity-50">
+        {{ image.assetCredit }}
+      </small>
+    {% endif %}
+    {% if caption %}
+      <figcaption class="mt-1 md:mt-3 font-sans text-sm">
+        {{ caption|striptags('<a><strong><em><b><i>')|typogrify }}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endif %}

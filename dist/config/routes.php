@@ -20,4 +20,8 @@
 
 return [
 
+    // Blog date archives
+    'blog/<year:\d{4}>' => ['template' => 'blog/_archive'],
+    'blog/<year:\d{4}>/<month:\d{1,2}>' => ['template' => 'blog/_archive'],
+
 ];

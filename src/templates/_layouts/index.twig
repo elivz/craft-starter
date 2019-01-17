@@ -8,11 +8,12 @@
   {% header "Link: <#{domain}>; rel=dns-prefetch;,<#{domain}>; rel=preconnect; crossorigin;" -%}
 {% endfor -%}
 
+{%- minify -%}
 <!DOCTYPE html>
 <html lang="{{ craft.app.language|slice(0,2) }}" prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb#" class="no-js">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% for domain in domains %}
       <link rel="preconnect" href="{{ domain }}" crossorigin>
     {% endfor %}
@@ -25,18 +26,25 @@
       (function(d) {
         d.documentElement.className = d.documentElement.className.replace('no-js', 'js');
 
+        window.site = {
+          baseUrl: '{{ siteUrl }}',
+          siteName: '{{ siteName }}',
+          csrfTokenName: "{{ craft.app.config.general.csrfTokenName|e('js') }}",
+          csrfTokenValue: "{{ craft.app.request.csrfToken |e('js') }}"
+        };
+
         function loadScript(src) {
           var r=d.getElementsByTagName('script')[0],s=d.createElement('script');
           s.async=true,s.src=src;r.parentNode.insertBefore(s,r);
         }
 
         {# Polyfill other modern JS methods -#}
-        if (typeof window.matchMedia === 'undefined' && typeof window.msMatchMedia === 'undefined')) {
+        if (typeof window.matchMedia === 'undefined' && typeof window.msMatchMedia === 'undefined') {
           loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
         }
 
         {# Typekit embed -#}
-        var config = { kitId: 'xxxxxx', scriptTimeout: 3000, async: true },
+        var config = { kitId: 'xxx', scriptTimeout: 3000, async: true },
         h=d.documentElement,t=setTimeout(function(){
         h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},
         config.scriptTimeout),tk=d.createElement("script"),f=false,
@@ -63,13 +71,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url('assets/static/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url('assets/static/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ url('assets/static/site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ url('assets/static/safari-pinned-tab.svg') }}" color="#ff0000">
+    <link rel="mask-icon" href="{{ url('assets/static/safari-pinned-tab.svg') }}" color="#000000">
     <link rel="shortcut icon" href="{{ url('assets/static/favicon.ico') }}">
     <meta name="msapplication-config" content="{{ url('assets/icons/browserconfig.xml') }}">
-    <meta name="msapplication-TileColor" content="#ff0000">
+    <meta name="msapplication-TileColor" content="#000000">
     <meta name="apple-mobile-web-app-title" content="{{ siteName }}">
     <meta name="application-name" content="{{ siteName }}">
-    <meta name="theme-color" content="#f7f7f7">
+    <meta name="theme-color" content="#ffffff">
 
     {% block htmlHead %}{% endblock %}
   </head>
@@ -77,7 +85,7 @@
   <body class="{{ bodyClass ?? '' }}">
     {{ beginBody() }}
 
-    <a href="#main" class="skip-link no-smooth-scroll">Skip to content</a>
+    <a href="#main" class="c-skip-link no-smooth-scroll">Skip to content</a>
 
     <!--[if lt IE 11]>
       <div class="browserupgrade">
@@ -89,22 +97,24 @@
 
     {% block top %}{% endblock %}
 
-    <div class="container">
+    <div id="app">
       {# Global website header, including navigation #}
       {% block header %}
-        {% include "_content/global-header" %}
+        {% include "_layouts/global-header" %}
       {% endblock %}
 
       {# Main body content of page #}
-      <main id="main" class="page-content" tabindex="-1">
+      <main id="main" class="outline-none" tabindex="-1">
+        {% block beforeContent %}{% endblock %}
         {% block content %}
-          {% include ["_content/body-#{entry.slug}", '_content/body-default'] %}
+          {% include ["_content/body-#{entry.slug}", "_content/body-#{entry.section.handle}", '_content/body-default'] %}
         {% endblock %}
+        {% block afterContent %}{% endblock %}
       </main>
 
       {# Global footer #}
       {% block footer %}
-        {% include "_content/global-footer" %}
+        {% include "_layouts/global-footer" %}
       {% endblock %}
     </div>
 
@@ -113,3 +123,4 @@
     {{ endBody() }}
   </body>
 </html>
+{%- endminify -%}

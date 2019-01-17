@@ -1,0 +1,25 @@
+{% import '_macros' as m %}
+
+{% if post %}
+  {# Set variables #}
+  {% set wrapperElement = wrapperElement ?? "article" %}
+
+  {# Output the markup #}
+  <{{ wrapperElement }} class="{{ classes ?? '' }} group font-serif">
+    <a href="{{ post.url }}">
+      {{ m.srcset(post.featuredImage.one(), {
+        widths: [ 1200, 800 ],
+        class: "block mb-2",
+      }) }}
+    </a>
+    <h3 class="text-lg leading-tight">
+      <a href="{{ post.url }}">{{ post.title|typogrify(true) }}</a>
+    </h3>
+    <p class="mb-2 font-sans text-sm">
+      {{ m.postMeta(post) }}
+    </p>
+    <div class="text-sm">
+      {{ post.summary|typogrify }}
+    </div>
+  </{{ wrapperElement }}>
+{% endif %}

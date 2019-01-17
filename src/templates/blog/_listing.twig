@@ -1,0 +1,16 @@
+{% set limit = limit ?? 12 %}
+
+{% if posts.count() > 0 %}
+  {% paginate posts.limit(limit) as pageInfo, posts %}
+  {% do seomatic.helper.paginate(pageInfo) %}
+
+  {% for post in posts %}
+    {% include '_components/post' with { post: post } only %}
+  {% endfor %}
+
+  {% include '_components/pagination' with { pageInfo: pageInfo } only %}
+{% else %}
+  <h2 class="mb-24 text-24">
+    There are posts yet on this page.
+  </h2>
+{% endif %}

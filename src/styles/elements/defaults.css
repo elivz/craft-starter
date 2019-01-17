@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @apply text-base leading-normal font-serif font-normal bg-white text-black;
+  overflow-x: hidden;
+  hanging-punctuation: first allow-end last;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga' 1;
+}
+
+a {
+  @apply text-inherit no-underline;
+
+  &:hover,
+  &:focus {
+    @apply underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: normal;
+}
+
+svg {
+  @apply max-w-full fill-current .align-middle;
+}
+
+figure {
+  margin: 0;
+}
+
+picture > img {
+  width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Hide outline for non-keyboard-inputs elements */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}

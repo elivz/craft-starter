@@ -1,0 +1,27 @@
+{% import '_macros' as m %}
+
+{# Get all the variables #}
+{% set images = self.image.all() %}
+{% set caption = self.caption ?? false %}
+
+{# Generate our classes #}
+{% if self.position == 'center' %}
+  {% set class = 'max-w-48 mx-auto' %}
+{% elseif self.position == 'left' %}
+  {% set class = 'float-left md:max-w-1/2 mr-4' %}
+{% elseif self.position == 'right' %}
+  {% set class = 'float-right md:max-w-1/2 ml-4' %}
+{% endif %}
+
+{# Output the markup #}
+{% if images|length %}
+  <div class="{{ class ?? '' }} mb-8">
+    {% for image in images %}
+      {% include '_components/image' with {
+        image: image,
+        caption: caption,
+        classes: loop.index > 1 ? 'mt-8',
+      } only %}
+    {% endfor %}
+  </div>
+{% endif %}

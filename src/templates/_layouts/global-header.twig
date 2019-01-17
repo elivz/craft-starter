@@ -1,0 +1,22 @@
+{% import '_macros' as m %}
+
+<header id="header" class="container flex items-center h-12 mr-12 font-sans bg-white">
+    <button class="c-nav-toggle -mx-2 p-2 md:hidden" data-toggle="header-nav">
+      <i></i>
+      <span class="visuallyhidden">Menu</span>
+    </button>
+
+    <{{ craft.app.request.pathInfo == '' ? 'h1' : 'div' }} id="logo">
+      <a href="{{ siteUrl }}">
+        {{ svg('@webroot/assets/images/logo.svg') }}
+      </a>
+    </{{ craft.app.request.pathInfo == '' ? 'h1' : 'div' }}>
+
+    <nav id="header-nav">
+      {% for page in craft.entries.section('pages').level(1).all() %}
+        <a href="{{ page.url }}">
+          {{ page.title }}
+        </a>
+      {% endfor %}
+    </nav>
+</header>

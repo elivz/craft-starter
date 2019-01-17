@@ -1,0 +1,72 @@
+.c-wysiwyg {
+  h3 {
+    @apply font-normal text-inherit text-black;
+    font-size: 1.1em;
+  }
+  * + h3 {
+    @apply mt-8;
+  }
+  h3 + * {
+    @apply mt-2;
+  }
+
+  h4 {
+    @apply font-sans font-normal;
+    font-size: 0.9em;
+  }
+
+  p + p {
+    text-indent: 1rem;
+  }
+
+  strong {
+    @apply text-black font-bold;
+  }
+
+  a {
+    @apply text-grey;
+  }
+  &.text-grey a {
+    @apply text-black;
+  }
+
+  ul,
+  ol {
+    @apply pl-3;
+  }
+
+  li + li {
+    @apply mt-2;
+  }
+
+  table {
+    @apply w-full my-8;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    padding: 0.2rem 0.25rem;
+    text-align: left;
+  }
+
+  th {
+    @apply text-left font-normal text-black;
+    padding: 0.2rem 0.25rem 0.5rem;
+  }
+
+  td {
+    @apply text-grey text-left;
+    padding: 0.2rem 0.25rem;
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: 0;
+  }
+
+  th:last-child,
+  td:last-child {
+    padding-right: 0;
+  }
+}

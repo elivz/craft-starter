@@ -1,13 +1,21 @@
 {% extends '_layouts' %}
+{% import '_macros' as m %}
 
 {% block content %}
   {% set posts = craft.entries.section('posts') %}
-  {% paginate posts.limit(8) as pageInfo, posts %}
-  {% do seomatic.helper.paginate(pageInfo) %}
 
-  {% for post in posts %}
-    {% include 'blog/_thumbnail' with { post: post } only %}
-  {% endfor %}
+  <div class="container py-8">
+    {{ m.breadcrumbs([
+      {
+        title: 'Blog',
+        url: url('blog'),
+      },
+      {
+        title: 'Everything'
+      }
+    ], 'mb-4') }}
+    <h1 class="text-xl leading-tight">Blog</h1>
 
-  {% include '_components/pagination' with { pageInfo: pageInfo } only %}
+    {% include 'blog/_listing' with { posts: posts } only %}
+  </div>
 {% endblock %}

@@ -1,0 +1,65 @@
+{% extends '_layouts' %}
+{% import '_macros' as m %}
+
+{% if category is defined %} {# show a category archive #}
+
+    {% set title = category.title %}
+    {% set posts = craft.entries({
+        section: 'posts',
+        relatedTo: category,
+    }) %}
+
+{% elseif month is defined %} {# show an archive of a month #}
+
+    {% set title = craft.i18n.getLocaleData().getMonthName(month|round) ~ ' ' ~ year %}
+    {% do seomatic.meta.seoTitle("Posts from #{title}") %}
+    {% do seomatic.meta.seoDescription("#{siteName} blog posts from #{title}.") %}
+
+    {% if month != 12 %}
+        {% set nextmonth = month + 1 %}
+        {% set nextyear = year %}
+    {% else %}
+        {% set nextmonth = 1 %}
+        {% set nextyear = year + 1 %}
+    {% endif %}
+
+    {% set posts = craft.entries({
+        section: 'posts',
+        after: year ~ '-' ~ month,
+        before: nextyear ~ '-' ~ nextmonth
+    }) %}
+
+{% elseif year is defined %} {# show an archive of a year #}
+
+    {% set title = year %}
+    {% do seomatic.meta.seoTitle("Posts from #{title}") %}
+    {% do seomatic.meta.seoDescription("#{siteName} blog posts from #{title}.") %}
+
+    {% set posts = craft.entries({
+        section: 'posts',
+        after: year,
+        before: year + 1
+    }) %}
+
+{% else %}
+
+    {% redirect 'blog' %}
+
+{% endif %}
+
+{% block content %}
+  <div class="container py-8">
+    {{ m.breadcrumbs([
+      {
+        title: 'Blog',
+        url: url('blog'),
+      },
+      {
+        title: title|typogrify
+      }
+    ], 'mb-4') }}
+    <h1 class="text-2xl leading-tight">{{ title }}</h1>
+
+    {% include 'blog/_listing' with { posts: posts } only %}
+  </div>
+{% endblock %}

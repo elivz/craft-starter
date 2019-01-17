@@ -1,0 +1,45 @@
+@responsive {
+  .pin-c {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .pin-lc {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .pin-rc {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .pin-yc {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .pin-xc {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .pin-t-full {
+    top: 100%;
+  }
+
+  .pin-b-full {
+    bottom: 100%;
+  }
+
+  .pin-l-full {
+    left: 100%;
+  }
+
+  .pin-r-full {
+    right: 100%;
+  }
+}

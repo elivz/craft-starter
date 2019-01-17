@@ -1,0 +1,39 @@
+.c-btn {
+  @apply inline-block
+    py-3 px-8
+    font-sans text-sm leading-tight tracking-wide uppercase text-black text-center
+    no-underline
+    bg-white
+    border border-black rounded
+    transition transition-all;
+
+  &:hover,
+  &:focus {
+    @apply no-underline bg-grey-lighter;
+  }
+
+  &:disabled {
+    @apply text-grey cursor-not-allowed;
+  }
+}
+
+/* Small variant */
+.c-btn--small {
+  @apply py-2 px-3 text-xs;
+}
+
+@screen sm {
+  .c-btn--small {
+    @apply text-sm;
+  }
+}
+
+/* Color variants */
+.c-btn--black {
+  @apply text-white bg-black border-black;
+
+  &:hover,
+  &:focus {
+    @apply text-white bg-grey;
+  }
+}

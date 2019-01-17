@@ -1,4 +1,7 @@
 {% macro date(givenDate, format = 'long') %}
+  {%- if format == 'short' %}
+    {% set format = 'd.m.Y' %}
+  {% endif -%}
   <time datetime="{{ givenDate.format('c') }}" pubdate>
     {{ givenDate|date(format) }}
   </time>
@@ -19,9 +22,50 @@
   {% endspaceless -%}
 {% endmacro %}
 
+{% macro postMeta(post, links = true) %}
+  {%- spaceless -%}
+    {% import _self as m %}
+
+    {% if post.section.handle == 'posts' %}
+      {{ m.date(post.postDate, 'short') }}
+
+      {% set topics = post.postTopics.all() %}
+      {% if topics|length %}
+        in
+        {% for cat in topics %}
+          {%- if links -%}
+            <a href="{{ cat.url }}">{{ cat.title }}</a>
+          {%- else -%}
+            {{ cat.title }}
+          {%- endif -%}
+          {%- if not loop.last %},{% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {%- endspaceless -%}
+{% endmacro %}
+
+{% macro breadcrumbs(crumbs = [], classes = '') %}
+  {% if crumbs|length > 0 %}
+    <ol class="list-reset font-sans text-sm {{ classes }}">
+      {% for item in crumbs %}
+        <li class="inline-block {{ loop.last ? 'uppercase' }}">
+          {% if item.url ?? false %}
+            <a href="{{ item.url }}">{{ item.title ?? item.name }}</a>
+          {% else %}
+            <span>{{ item.title ?? item.name }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  {% endif %}
+{% endmacro %}
+
 {% macro firstSentence(entry) %}
   {%- spaceless %}
-    {% if not entry.isFieldEmpty('introduction') %}
+    {% if not entry.isFieldEmpty('summary') %}
+      {% set text = entry.summary %}
+    {% elseif not entry.isFieldEmpty('introduction') %}
       {% set text = entry.introduction %}
     {% elseif not entry.isFieldEmpty('mainContent') %}
       {% set body = entry.mainContent %}
@@ -57,7 +101,7 @@
       {# Default options #}
       {% set options = {
         alt: image.title ?? '',
-        widths: [ 2000, 1000, 600 ],
+        widths: [ 2500, 1800, 1200, 800 ],
         defaultWidthIndex: 1,
         sizes: 'auto',
         transformConfig: {}
@@ -91,12 +135,14 @@
         {% set options = options|merge({ defaultWidthIndex: 0 }) %}
       {% endif %}
 
+      {# Generate a very small copy to speed up getting the dominant color #}
+      {% set tiny = craft.imager.transformImage(image, { width: 20, blur: true }) %}
+
       {# Output it to the screen #}
       <img
-        src="{{ craft.imager.placeholder({
-          type: 'silhouette',
-          source: image,
-          fgColor: '#ddd',
+        src="{{ defaultImg }}"
+        srcset="{{ craft.imager.placeholder({
+          color: craft.imager.getDominantColor(tiny.url, 50),
           width: transformed[options.defaultWidthIndex].width,
           height: transformed[options.defaultWidthIndex].height
         }) }}"
@@ -111,9 +157,7 @@
       <noscript>
         <img
           src="{{ defaultImg }}"
-          srcset="{{ transformed|length > 1 ? craft.imager.srcset(transformed) : defaultImg }}"
           alt="{{ options.alt }}"
-          sizes="{{ options.sizes }}"
           width="{{ transformed[options.defaultWidthIndex].width }}"
           height="{{ transformed[options.defaultWidthIndex].height }}"
           class="{{ options.class ?? '' }}"

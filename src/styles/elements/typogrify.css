@@ -1,0 +1,27 @@
+/* Style the various wrappers that the Typogrify plugin adds */
+
+.caps {
+  letter-spacing: 0.025em;
+
+  p > & {
+    font-feature-settings: 'c2sc' 1;
+  }
+}
+
+.push-single {
+  margin-right: 0.15em;
+}
+.pull-single {
+  margin-left: -0.15em;
+}
+
+.push-double {
+  margin-right: 0.25em;
+}
+.pull-double {
+  margin-left: -0.25em;
+}
+
+.numbers {
+  font-feature-settings: 'onum' 1;
+}

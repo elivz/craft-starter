@@ -1,0 +1,34 @@
+{% import '_macros' as m %}
+
+<article class="container clearfix py-8">
+  <header class="mb-4">
+    {{ m.breadcrumbs([
+      {
+        title: 'Blog',
+        url: url('blog'),
+      },
+      entry
+    ], 'mb-4') }}
+    <h1 class="text-xl leading-tight">
+      {{ entry.title|typogrify(true) }}
+    </h1>
+    <div class="text-sm">
+      {{ m.postMeta(entry) }}
+    </div>
+  </header>
+
+  {{ m.srcset(entry.featuredImage.one()) }}
+
+  {% for block in entry.mainContent.all() %}
+    {% include "_content/blocks/#{block.type}" ignore missing with { self: block } only %}
+  {% endfor %}
+
+  <footer class="mt-4 pt-4 border-t">
+    <h3>Share:</h3>
+    <ul>
+      <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ entry.url|url_encode }}" class="js-share-link">Facebook</a></li>
+      <li><a href="https://twitter.com/intent/tweet?text={{ entry.title|url_encode }}&url={{ entry.url|url_encode }}" class="js-share-link">Twitter</a></li>
+      <li><a href="mailto:?subject={{ entry.title|url_encode }}&body={{ entry.url|url_encode }}" class="js-share-link">Email</a></li>
+    </ul>
+  </footer>
+</article>

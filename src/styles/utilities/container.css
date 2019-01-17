@@ -1,0 +1,7 @@
+.container {
+  @apply mx-auto;
+  max-width: 1650px;
+  min-width: 320px;
+  padding-left: calc(1rem + 1vw);
+  padding-right: calc(1rem + 1vw);
+}

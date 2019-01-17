@@ -2,27 +2,41 @@
 {% set entries = craft.entries.section(section).limit(25).all() -%}
 <?xml version="1.0"?>
 <rss version="2.0">
-    <channel>
-        <title>{{ siteName }} - {{ section.name }}</title>
-        <link>{{ siteUrl }}</link>
-        <atom:link href="{{ craft.app.request.absoluteUrl }}" rel="self" type="application/rss+xml" />
-        <description></description>
-        <language>en-us</language>
-        <pubDate>{{ now|rss }}</pubDate>
-        <lastBuildDate>{{ now|rss }}</lastBuildDate>
+  <channel>
+    <title>{{ siteName }} - {{ section.name }}</title>
+    <link>{{ siteUrl }}</link>
+    <atom:link href="{{ craft.app.request.absoluteUrl }}" rel="self" type="application/rss+xml" />
+    <description></description>
+    <language>en-us</language>
+    <pubDate>{{ now|rss }}</pubDate>
+    <lastBuildDate>{{ now|rss }}</lastBuildDate>
 
-        {% for entry in entries %}
-            <item>
-                <title>{{ entry.title }}</title>
-                <link>{{ entry.url }}</link>
-                <pubDate>{{ entry.postDate|rss }}</pubDate>
-                <author>{{ entry.author }}</author>
-                <guid>{{ entry.url }}</guid>
-                <description><![CDATA[
-                    {{ entry.summary|markdown|replace('="/', '="'~siteUrl)|raw }}
-                    <p><a href="{{ entry.url }}">Continue reading...</a></p>
-                ]]></description>
-            </item>
-        {% endfor %}
-    </channel>
+    {% for entry in entries %}
+      {% set image = entry.featuredImage.one().setTransform({ width: 1200, height: 1200, mode: 'fit' }) ?? false %}
+      <item>
+        <title>{{ entry.title }}</title>
+        <link>{{ entry.url }}</link>
+        <pubDate>{{ entry.postDate|rss }}</pubDate>
+        <author>{{ siteName }}</author>
+        <guid>{{ entry.url }}</guid>
+        {% for cat in entry.postTopic %}
+          <category><![CDATA[{{ cat.title }}]]></category>
+        {%- endfor %}
+        {% if image %}
+          <media:thumbnail url="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" />
+        {% endif %}
+        <description>
+          <![CDATA[
+            {% if image %}
+              <p>
+                <img src="{{ image.url }}" alt="{{ image.title }}" width="{{ image.width }}" height="{{ image.height }}">
+              </p>
+            {% endif %}
+            {{ entry.summary|replace('="/', '="'~siteUrl)|raw }}
+            <p><a href="{{ entry.url }}">Continue reading...</a></p>
+          ]]>
+        </description>
+      </item>
+    {% endfor %}
+  </channel>
 </rss>

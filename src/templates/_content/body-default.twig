@@ -1,7 +1,18 @@
-<article class="page">
-  <h1>{{ entry.title }}</h1>
+
+{% import '_macros' as m %}
+
+<article class="container clearfix py-8">
+  <h1 class="text-xl leading-tight">
+    {{ entry.title|typogrify(true) }}
+  </h1>
+
+  {{ m.srcset(entry.featuredImage.one()) }}
+
+  <div class="text-md">
+    {{ entry.intro|typogrify }}
+  </div>
 
   {% for block in entry.mainContent.all() %}
-    {% include "_components/block-" ~ block.type ignore missing with { self: block } only %}
+    {% include "_content/blocks/#{block.type}" ignore missing with { self: block } only %}
   {% endfor %}
 </article>
