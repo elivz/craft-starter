@@ -1,4 +1,4 @@
-dateModified: 1547691866
+dateModified: 1547738141
 email:
   fromEmail: eli@elivz.com
   fromName: 'Craft Starter'
@@ -369,7 +369,7 @@ plugins:
   redactor:
     enabled: '1'
     licenseKey: null
-    schemaVersion: 2.2.0
+    schemaVersion: 2.2.1
     settings: null
   seomatic:
     enabled: '1'

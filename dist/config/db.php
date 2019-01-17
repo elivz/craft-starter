@@ -7,27 +7,11 @@
  */
 
 return [
-
-    // All environments
-    '*' => [
-        'driver' => 'mysql',
-        'tablePrefix' => 'craft_',
-        'server' => getenv('DB_HOST'),
-        'database' => getenv('DB_NAME'),
-        'user' => getenv('DB_USER'),
-        'password' => getenv('DB_PASS'),
-        'port' => getenv('DB_PORT'),
-    ],
-
-    // Live (production) environment
-    'production'  => [
-    ],
-
-    // Staging (pre-production) environment
-    'staging'  => [
-    ],
-
-    // Local (development) environment
-    'dev'  => [
-    ],
+  'driver' => 'mysql',
+  'server' => getenv('DB_HOST'),
+  'database' => getenv('DB_NAME'),
+  'user' => getenv('DB_USER'),
+  'password' => getenv('DB_PASS'),
+  'port' => getenv('DB_PORT'),
+  'tablePrefix' => 'craft_',
 ];

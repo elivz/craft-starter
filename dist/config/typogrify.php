@@ -11,6 +11,20 @@
 use \PHP_Typography\Settings\Dash_Style;
 use \PHP_Typography\Settings\Quote_Style;
 
+/**
+ * Typogrify config.php
+ *
+ * This file exists only as a template for the Typogrify settings.
+ * It does nothing on its own.
+ *
+ * Don't edit this file, instead copy it to 'craft/config' as 'typogrify.php'
+ * and make your changes there to override default settings.
+ *
+ * Once copied to 'craft/config', this file will be multi-environment aware as
+ * well, so you can have different settings groups for each environment, just as
+ * you do for 'general.php'
+ */
+
 return [
     // sets tags where typography of children will be untouched
     "set_tags_to_ignore" => [
@@ -112,19 +126,19 @@ return [
     "set_smart_marks" => true,
 
     // replaces 1*4 with 1x4, etc.
-    "set_smart_math" => true,
+    "set_smart_math" => false,
 
     // replaces 2^4 with 2<sup>4</sup>
-    "set_smart_exponents" => true,
+    "set_smart_exponents" => false,
 
     // replaces 1/4  with <sup>1</sup>&#8260;<sub>4</sub>
-    "set_smart_fractions" => false,
+    "set_smart_fractions" => true,
 
     // wrap numbers in <span class="numbers">
-    "set_smart_ordinal_suffix" => false,
+    "set_smart_ordinal_suffix" => true,
 
     // single character words are forced to next line with insertion of &nbsp;
-    "set_single_character_word_spacing" => true,
+    "set_single_character_word_spacing" => false,
 
     // fractions are kept together with insertion of &nbsp;
     "set_fraction_spacing" => true,
@@ -152,13 +166,16 @@ return [
     "set_dewidow" => true,
 
     // establishes maximum length of a widows that will be protected
-    "set_max_dewidow_length" => 6,
+    "set_max_dewidow_length" => 8,
+
+    // establishes the maximum number of words considered for dewidowing.
+    "set_dewidow_word_number" => 2,
 
     // establishes maximum length of pulled text to keep widows company
-    "set_max_dewidow_pull" => 5,
+    "set_max_dewidow_pull" => 8,
 
     // enables wrapping at hard hyphens internal to a word with the insertion of a zero-width-space
-    "set_wrap_hard_hyphens" => false,
+    "set_wrap_hard_hyphens" => true,
 
     // enables wrapping of urls
     "set_url_wrap" => true,
@@ -173,13 +190,13 @@ return [
     "set_style_ampersands" => false,
 
     // wrap caps in <span class="caps">
-    "set_style_caps" => false,
+    "set_style_caps" => true,
 
     // wrap initial quotes in <span class="quo"> or <span class="dquo">
     "set_style_initial_quotes" => false,
 
     // wrap numbers in <span class="numbers">
-    "set_style_numbers" => false,
+    "set_style_numbers" => true,
 
     // sets tags where initial quotes and guillemets should be styled
     "set_initial_quote_tags" => [
@@ -197,19 +214,19 @@ return [
     ],
 
     // enables hyphenation of text
-    "set_hyphenation" => false,
+    "set_hyphenation" => true,
 
     // defines hyphenation language for text
     "set_hyphenation_language" => "en-US",
 
     // establishes minimum length of a word that may be hyphenated
-    "set_min_length_hyphenation" => 5,
+    "set_min_length_hyphenation" => 8,
 
     // establishes minimum character requirement before a hyphenation point
-    "set_min_before_hyphenation" => 3,
+    "set_min_before_hyphenation" => 4,
 
     // establishes minimum character requirement after a hyphenation point
-    "set_min_after_hyphenation" => 2,
+    "set_min_after_hyphenation" => 3,
 
     // allows/disallows hyphenation of title/heading text
     "set_hyphenate_headings" => true,

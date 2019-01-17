@@ -1,11 +1,13 @@
 <?php
 
 return [
-  'filenamePattern' => '{basename}_{transformString|shorthash}',
-  'imagerSystemPath' => '@webroot/images/sized/',
-  'imagerUrl' => '/media/sized/',
+  'filenamePattern' => '{basename}_{transformString|shorthash}.{extension}',
+  'imagerSystemPath' => '@webroot/media/sized/',
+  'imagerUrl' => '@web/media/sized/',
+  'useForNativeTransforms' => true,
+  'cacheDuration' => 5184000,
+  'cacheDurationRemoteFiles' => 5184000,
   'suppressExceptions' => true,
-  'smartResizeEnabled' => true,
   'removeMetadata' => true,
   'convertToRGB' => true,
   'jpegQuality' => 85,

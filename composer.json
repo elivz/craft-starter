@@ -14,7 +14,7 @@
     "aelvan/imager": "^2.1",
     "clubstudioltd/craft-asset-rev": "^6.0",
     "craftcms/cms": "^3.1",
-    "craftcms/redactor": "^2.0",
+    "craftcms/redactor": "^2.2",
     "nystudio107/craft-minify": "^1.2",
     "nystudio107/craft-retour": "^3.0",
     "nystudio107/craft-seomatic": "^3.1",
@@ -41,9 +41,9 @@
   },
   "scripts": {
     "post-create-project-cmd": [
+      "@php -r \"unlink('dist/config/license.key');\"",
       "@php -r \"unlink('LICENSE.md');\"",
-      "@composer dump-autoload -o",
-      "@php craft setup/welcome"
+      "@composer dump-autoload -o"
     ],
     "post-install-cmd": [
       "dist/craft migrate/all"
