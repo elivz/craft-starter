@@ -21,7 +21,7 @@ cd config
 case "$1" in
   "init")
     ../run build
-    ../run update
+    ../run install
     ;;
 
   "build")
@@ -30,10 +30,21 @@ case "$1" in
     ${COMPOSE} build
     ;;
 
+  "install")
+    if [ -f ../package.json ]; then
+        echo "📦  ${green}Installing Node dependencies from package.json${reset}"
+        ${RUN} npm install
+    fi
+    if [ -f ../composer.json ]; then
+        echo "📦  ${green}Installing PHP dependencies from composer.json${reset}"
+        ${RUN} composer install
+    fi
+    ;;
+
   "update")
     if [ -f ../package.json ]; then
         echo "📦  ${green}Updating Node dependencies from package.json${reset}"
-        ${RUN} yarn upgrade
+        ${RUN} npm update
     fi
     if [ -f ../composer.json ]; then
         echo "📦  ${green}Updating PHP dependencies from composer.json${reset}"
@@ -64,15 +75,15 @@ case "$1" in
 
   "watch")
     open "http://${IP}.xip.io:3000"
-    ${EXEC} yarn watch
+    ${EXEC} npm run watch
     ;;
 
   "production")
-    ${EXEC} yarn build
+    ${EXEC} npm run build
     ;;
 
   "lint")
-    ${EXEC} yarn lint
+    ${EXEC} npm run lint
     ;;
 
   *)

@@ -1,4 +1,4 @@
-dateModified: 1543613561
+dateModified: 1547691866
 email:
   fromEmail: eli@elivz.com
   fromName: 'Craft Starter'
@@ -39,17 +39,17 @@ fields:
     settings:
       allowedKinds:
         - image
-      defaultUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+      defaultUploadLocationSource: 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
       defaultUploadLocationSubpath: ''
       limit: '1'
       localizeRelations: false
       restrictFiles: '1'
       selectionLabel: 'Select image'
-      singleUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+      singleUploadLocationSource: 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
       singleUploadLocationSubpath: ''
       source: null
       sources:
-        - 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+        - 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
       targetSiteId: null
       useSingleFolder: ''
       viewMode: large
@@ -279,17 +279,17 @@ matrixBlockTypes:
         settings:
           allowedKinds:
             - image
-          defaultUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+          defaultUploadLocationSource: 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
           defaultUploadLocationSubpath: ''
           limit: '1'
           localizeRelations: false
           restrictFiles: '1'
           selectionLabel: 'Select image'
-          singleUploadLocationSource: 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+          singleUploadLocationSource: 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
           singleUploadLocationSubpath: ''
           source: null
           sources:
-            - 'folder:045e97cd-426e-4099-88a8-9c18645e3d07'
+            - 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
           targetSiteId: null
           useSingleFolder: ''
           viewMode: large
@@ -369,7 +369,7 @@ plugins:
   redactor:
     enabled: '1'
     licenseKey: null
-    schemaVersion: 2.0.0
+    schemaVersion: 2.2.0
     settings: null
   seomatic:
     enabled: '1'
@@ -527,7 +527,7 @@ system:
   edition: solo
   live: true
   name: 'Craft Starter'
-  schemaVersion: 3.1.9
+  schemaVersion: 3.1.20
   timeZone: America/Los_Angeles
 users:
   allowPublicRegistration: false

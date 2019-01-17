@@ -18,9 +18,9 @@ before_script:
   - eval $(ssh-agent -s)
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  - yarn --non-interactive --silent --frozen-lockfile
-  - yarn build
-  - composer install --no-interaction --no-dev --prefer-dist --no-progress
+  - npm ci
+  - npm run build
+  - composer install --optimize-autoloader --no-interaction --no-dev --prefer-dist --no-progress
 
 stage_deploy:
   stage: deploy

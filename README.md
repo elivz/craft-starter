@@ -16,10 +16,10 @@ To start, run the following command in the project folder to finish setting thin
 
 ### Installing & Managing Dependencies
 
-We use [Yarn](https://yarnpkg.com/en/docs) for front-end dependency management, which you can access like this:
+We use [NPM](https://docs.npmjs.com/cli/npm) for front-end dependency management, which you can access like this:
 
-    ./run yarn add flickity
-    ./run yarn remove flickity
+    ./run npm install -D flickity
+    ./run npm remove flickity
 
 If you make manual changes to `package.json` (or, optionally, `composer.json`), you will need to run `./run update`.
 
