@@ -4,14 +4,13 @@ services:
   web:
     image: elivz/php
     ports:
-      - "8080:80"
-      - "3000:3000"
+      - '8080:80'
+      - '3000:3000'
     volumes:
-      - ..:/var/www
+      - ..:/var/www:delegated
     links:
       - db
       - redis
-      - mail
     environment:
       # Don't change these
       ENVIRONMENT:
@@ -31,9 +30,9 @@ services:
   db:
     image: mariadb
     ports:
-      - "4306:3306"
+      - '4306:3306'
     volumes:
-      - ./data:/var/lib/mysql
+      - data-volume:/var/lib/mysql
     environment:
       MYSQL_DATABASE: app
       MYSQL_USER: app
@@ -42,9 +41,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
 
   redis:
-      image: redis:4.0-alpine
+    image: redis:4.0-alpine
 
-  mail:
-    image: tophfr/mailcatcher
-    ports:
-      - "1080:80"
+volumes:
+  data-volume:

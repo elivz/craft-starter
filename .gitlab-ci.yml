@@ -18,22 +18,22 @@ before_script:
   - eval $(ssh-agent -s)
   - ssh-add <(echo "$SSH_PRIVATE_KEY")
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  - npm ci
-  - npm run build
-  - composer install --optimize-autoloader --no-interaction --no-dev --prefer-dist --no-progress
+  - composer install --no-interaction --no-dev --no-scripts --prefer-dist --no-progress
+  - yarn --non-interactive --silent --frozen-lockfile
+  - yarn build
 
 stage_deploy:
   stage: deploy
   only:
     - develop
   script:
-    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public/media' --exclude '.env.php' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
-    - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft clear-caches/all"
+    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public/media' --exclude '.env' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
+    - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft cache/flush-all"
 
 live_deploy:
   stage: deploy
   only:
     - master
   script:
-    - rsync -chaz --stats --delete --exclude 'cms/storage' --exclude 'public/media' --exclude '.env.php' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
-    - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft clear-caches/all"
+    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public/media' --exclude '.env' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
+    - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft cache/flush-all"

@@ -19,7 +19,7 @@ LOCAL_ROOT_PATH="${DIR}/../../dist"
 # Pull down the asset dir files via rsync
 for DIR in "${ASSETS_PATHS[@]}"
 do
-    rsync -F -a -z -v -e "ssh -p ${REMOTE_SSH_PORT}" "${REMOTE_SSH_LOGIN}:${REMOTE_ROOT_PATH}${DIR}" "${LOCAL_ROOT_PATH}${DIR%/*}"
+    rsync -azvP --delete -e "ssh -p ${REMOTE_SSH_PORT}" "${REMOTE_SSH_LOGIN}:${REMOTE_ROOT_PATH}${DIR}" "${LOCAL_ROOT_PATH}${DIR%/*}"
     echo "✅  ${GREEN} Downloaded assets from ${REMOTE_ROOT_PATH}${DIR} ${RESET}"
 done
 

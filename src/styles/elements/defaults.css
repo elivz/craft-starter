@@ -3,16 +3,14 @@
 }
 
 html {
-  @apply text-base leading-normal font-serif font-normal bg-white text-black;
+  @apply text-base leading-normal font-serif font-normal bg-white text-black antialiased;
   overflow-x: hidden;
   hanging-punctuation: first allow-end last;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga' 1;
 }
 
 a {
-  @apply text-inherit no-underline;
+  @apply text-inherit no-underline transition transition-all;
 
   &:hover,
   &:focus {
@@ -29,22 +27,50 @@ h5 {
 }
 
 svg {
-  @apply max-w-full fill-current .align-middle;
+  @apply fill-current align-middle;
 }
 
 figure {
   margin: 0;
 }
 
+img {
+  display: block;
+  border: 0;
+}
+
 picture > img {
   width: 100%;
 }
 
-[hidden] {
+[hidden],
+[v-cloak] {
   display: none !important;
+}
+
+/* Fast Tap, enables no-delay taps on supporting browsers */
+/* stylelint-disable no-descending-specificity */
+a,
+button,
+[role='button'],
+input,
+label,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 /* Hide outline for non-keyboard-inputs elements */
 .js-focus-visible :focus:not(.focus-visible) {
   outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0s !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -23,15 +23,23 @@ mix
 // Replace default image loader
 Mix.listen('configReady', require('./config/build/image-loader'));
 
-// Build everything
+// Build javascript
 mix
   .js(path.join(srcPath, 'scripts/initial.js'), 'scripts')
-  .js(path.join(srcPath, 'scripts/main.js'), 'scripts')
-  .postCss(path.join(srcPath, 'styles/main.css'), 'styles', [
+  .js(path.join(srcPath, 'scripts/main.js'), 'scripts');
+
+// Build stylesheets
+mix.postCss(path.join(srcPath, 'styles/main.css'), 'styles').options({
+  extractVueStyles: true,
+  postCss: [
     require('postcss-easy-import'),
     require('postcss-nested'),
     require('tailwindcss')(path.join(srcPath, 'styles/tailwind-config.js')),
-  ])
+  ],
+});
+
+// Copy all other static files
+mix
   .sync(path.join(srcPath, 'templates'), 'dist/templates')
   .copy(path.join(srcPath, 'images'), path.join(distPath, 'images'))
   .copy(path.join(srcPath, 'static'), path.join(distPath, 'static'));
@@ -48,6 +56,6 @@ if (mix.inProduction()) {
       }
     },
     whitelistPatternsChildren: [/^wysiwyg$/],
-    whitelistPatterns: [/float-/, /path/, /map/],
+    whitelistPatterns: [/float-/, /caps/, /push-/, /pull-/, /numbers/],
   });
 }

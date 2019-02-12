@@ -1,13 +1,11 @@
 import 'focus-visible';
 import 'intersection-observer';
-import quicklink from 'quicklink';
 import reframe from 'reframe.js/dist/reframe.es';
 import './components/header';
+import './lib/analytics';
 import './plugins/external-links';
+import './plugins/preload';
 import './plugins/smooth-scroll';
-
-// Preload links in the viewport
-quicklink();
 
 // Make sure videos keep their aspect ratio
 reframe('iframe:not(.no-reframe)');

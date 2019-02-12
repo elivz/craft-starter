@@ -14,33 +14,40 @@ return [
     'cpTrigger' => 'siteadmin',
     'securityKey' => getenv('SECURITY_KEY'),
     'enableCsrfProtection' => true,
-    'useProjectConfigFile' => true,
+    'useProjectConfigFile' => false,
     'omitScriptNameInUrls' => true,
+    'cacheDuration'=> 604800,
     'usePathInfo' => true,
     'backupOnUpdate' => true,
     'useEmailAsUsername' => true,
-    'maxUploadFileSize' => 67108864,
+    'maxUploadFileSize' => 134217728,
   ],
 
   // Live (production) environment
   'live' => [
     'allowUpdates' => false,
-    'allowAdminChanges' => false,
+    'devMode' => false,
+    'allowAdminChanges' => true,
+    'enableTemplateCaching' => true,
+    'backupOnUpdate' => true,
+    'isSystemLive' => true,
   ],
 
   // Staging (pre-production) environment
   'staging' => [
     'allowUpdates' => false,
     'devMode' => true,
-    'allowAdminChanges' => false,
     'enableTemplateCaching' => true,
-    'isSystemLive' => false,
+    'backupOnUpdate' => true,
+    'isSystemLive' => true,
   ],
 
   // Local (development) environment
   'dev' => [
+    'allowUpdates' => true,
     'devMode' => true,
     'enableTemplateCaching' => false,
     'backupOnUpdate' => false,
+    'isSystemLive' => true,
   ],
 ];
