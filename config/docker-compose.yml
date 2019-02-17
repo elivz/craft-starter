@@ -21,6 +21,7 @@ services:
       DB_PORT:
       REDIS_HOST:
       REDIS_PORT:
+      SITE_NAME: ${COMPOSE_PROJECT_NAME}
       BASE_URL:
       BASE_PATH:
       PUBLIC_FOLDER: /dist${PUBLIC_FOLDER}

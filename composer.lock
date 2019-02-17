@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "deb8d50b1e8183653e7c5b0a547d5e03",
+    "content-hash": "5b6210ebc9aed021e44b8374b83b006c",
     "packages": [
         {
             "name": "aelvan/imager",
@@ -74,16 +74,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.87.8",
+            "version": "3.87.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "28f117c221ee53dc2486ffcbf7288a9af6d21612"
+                "reference": "2f3f01d43a8d90b68e6fa0a17257d16fa7f07c47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/28f117c221ee53dc2486ffcbf7288a9af6d21612",
-                "reference": "28f117c221ee53dc2486ffcbf7288a9af6d21612",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2f3f01d43a8d90b68e6fa0a17257d16fa7f07c47",
+                "reference": "2f3f01d43a8d90b68e6fa0a17257d16fa7f07c47",
                 "shasum": ""
             },
             "require": {
@@ -152,7 +152,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-02-11T23:07:51+00:00"
+            "time": "2019-02-15T19:08:26+00:00"
         },
         {
             "name": "cebe/markdown",
@@ -543,16 +543,16 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.1.8",
+            "version": "3.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/craftcms/cms.git",
-                "reference": "ba226f463efce722ddfbcbf726fed851fff37277"
+                "reference": "8089a0741d2dbbdf6b8d142b60b8ed3814ffe211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/ba226f463efce722ddfbcbf726fed851fff37277",
-                "reference": "ba226f463efce722ddfbcbf726fed851fff37277",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/8089a0741d2dbbdf6b8d142b60b8ed3814ffe211",
+                "reference": "8089a0741d2dbbdf6b8d142b60b8ed3814ffe211",
                 "shasum": ""
             },
             "require": {
@@ -627,7 +627,7 @@
                 "craftcms",
                 "yii2"
             ],
-            "time": "2019-02-04T19:38:51+00:00"
+            "time": "2019-02-15T19:35:25+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -2169,63 +2169,6 @@
             "time": "2018-10-27T18:57:38+00:00"
         },
         {
-            "name": "league/csv",
-            "version": "8.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/csv.git",
-                "reference": "d2aab1e7bde802582c3879acf03d92716577c76d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/d2aab1e7bde802582c3879acf03d92716577c76d",
-                "reference": "d2aab1e7bde802582c3879acf03d92716577c76d",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^1.9",
-                "phpunit/phpunit": "^4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "8.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Csv\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ignace Nyamagana Butera",
-                    "email": "nyamsprod@gmail.com",
-                    "homepage": "https://github.com/nyamsprod/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Csv data manipulation made easy in PHP",
-            "homepage": "http://csv.thephpleague.com",
-            "keywords": [
-                "csv",
-                "export",
-                "filter",
-                "import",
-                "read",
-                "write"
-            ],
-            "time": "2018-02-06T08:27:03+00:00"
-        },
-        {
             "name": "league/flysystem",
             "version": "1.0.50",
             "source": {
@@ -2940,74 +2883,17 @@
             "time": "2018-07-21T15:09:55+00:00"
         },
         {
-            "name": "nystudio107/craft-retour",
-            "version": "3.1.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nystudio107/craft-retour.git",
-                "reference": "b759e61ef3b78bbdb597065c34209b3fcb287c35"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nystudio107/craft-retour/zipball/b759e61ef3b78bbdb597065c34209b3fcb287c35",
-                "reference": "b759e61ef3b78bbdb597065c34209b3fcb287c35",
-                "shasum": ""
-            },
-            "require": {
-                "craftcms/cms": "^3.0.0",
-                "league/csv": "^8.2"
-            },
-            "type": "craft-plugin",
-            "extra": {
-                "name": "Retour",
-                "handle": "retour",
-                "hasCpSettings": true,
-                "hasCpSection": true,
-                "changelogUrl": "https://raw.githubusercontent.com/nystudio107/craft-retour/v1/CHANGELOG.md",
-                "components": {
-                    "redirects": "nystudio107\\retour\\services\\Redirects",
-                    "statistics": "nystudio107\\retour\\services\\Statistics"
-                },
-                "class": "nystudio107\\retour\\Retour"
-            },
-            "autoload": {
-                "psr-4": {
-                    "nystudio107\\retour\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "nystudio107",
-                    "homepage": "https://nystudio107.com/"
-                }
-            ],
-            "description": "Retour allows you to intelligently redirect legacy URLs, so that you don't lose SEO value when rebuilding & restructuring a website",
-            "keywords": [
-                "404",
-                "craft-plugin",
-                "craftcms",
-                "redirect",
-                "retour",
-                "statistics"
-            ],
-            "time": "2019-02-04T06:50:43+00:00"
-        },
-        {
             "name": "nystudio107/craft-seomatic",
-            "version": "3.1.42",
+            "version": "3.1.43",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nystudio107/craft-seomatic.git",
-                "reference": "5ec448f70e6b54b7e409c813f09f8906cd8a1ef2"
+                "reference": "161625381d884b0ae725b1344927b61ff166bdb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nystudio107/craft-seomatic/zipball/5ec448f70e6b54b7e409c813f09f8906cd8a1ef2",
-                "reference": "5ec448f70e6b54b7e409c813f09f8906cd8a1ef2",
+                "url": "https://api.github.com/repos/nystudio107/craft-seomatic/zipball/161625381d884b0ae725b1344927b61ff166bdb7",
+                "reference": "161625381d884b0ae725b1344927b61ff166bdb7",
                 "shasum": ""
             },
             "require": {
@@ -3067,7 +2953,7 @@
                 "tags",
                 "twitter"
             ],
-            "time": "2019-02-08T01:17:45+00:00"
+            "time": "2019-02-15T18:44:57+00:00"
         },
         {
             "name": "nystudio107/craft-typogrify",
@@ -3223,56 +3109,6 @@
                 "textrank"
             ],
             "time": "2018-10-08T08:50:14+00:00"
-        },
-        {
-            "name": "phpoption/phpoption",
-            "version": "1.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "94e644f7d2051a5f0fcf77d81605f152eecff0ed"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/94e644f7d2051a5f0fcf77d81605f152eecff0ed",
-                "reference": "94e644f7d2051a5f0fcf77d81605f152eecff0ed",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.7.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "PhpOption\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache2"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes M. Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "Option Type for PHP",
-            "keywords": [
-                "language",
-                "option",
-                "php",
-                "type"
-            ],
-            "time": "2015-07-25T16:39:46+00:00"
         },
         {
             "name": "pimple/pimple",
@@ -3741,12 +3577,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "344bf4ed1263c75e7f96b87b80c52e8373561e19"
+                "reference": "54ee79a17e8cdc4ff8a1570198d5bc669a5803b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/344bf4ed1263c75e7f96b87b80c52e8373561e19",
-                "reference": "344bf4ed1263c75e7f96b87b80c52e8373561e19",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/54ee79a17e8cdc4ff8a1570198d5bc669a5803b8",
+                "reference": "54ee79a17e8cdc4ff8a1570198d5bc669a5803b8",
                 "shasum": ""
             },
             "conflict": {
@@ -3879,7 +3715,7 @@
                 "symfony/yaml": ">=2,<2.0.22|>=2.1,<2.1.7",
                 "tecnickcom/tcpdf": "<6.2.22",
                 "thelia/backoffice-default-template": ">=2.1,<2.1.2",
-                "thelia/thelia": ">=2.1,<2.1.2|>=2.1.0-beta1,<2.1.3",
+                "thelia/thelia": ">=2.1.0-beta1,<2.1.3|>=2.1,<2.1.2",
                 "theonedemon/phpwhois": "<=4.2.5",
                 "titon/framework": ">=0,<9.9.99",
                 "truckersmp/phpwhois": "<=4.3.1",
@@ -3937,7 +3773,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2019-02-05T19:58:17+00:00"
+            "time": "2019-02-14T08:06:11+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -4972,30 +4808,29 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v3.3.2",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "1ee9369cfbf26cfcf1f2515d98f15fab54e9647a"
+                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/1ee9369cfbf26cfcf1f2515d98f15fab54e9647a",
-                "reference": "1ee9369cfbf26cfcf1f2515d98f15fab54e9647a",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
+                "reference": "2a7dcf7e3e02dc5e701004e51a6f304b713107d5",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.4 || ^7.0",
-                "phpoption/phpoption": "^1.5",
+                "php": ">=5.3.9",
                 "symfony/polyfill-ctype": "^1.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0"
+                "phpunit/phpunit": "^4.8.35 || ^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "2.6-dev"
                 }
             },
             "autoload": {
@@ -5020,7 +4855,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2019-01-30T10:43:17+00:00"
+            "time": "2019-01-29T11:11:52+00:00"
         },
         {
             "name": "yii2tech/ar-softdelete",

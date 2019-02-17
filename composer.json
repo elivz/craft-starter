@@ -16,12 +16,11 @@
     "craftcms/cms": "^3.1",
     "craftcms/redactor": "^2.2",
     "nystudio107/craft-minify": "^1.2",
-    "nystudio107/craft-retour": "^3.0",
     "nystudio107/craft-seomatic": "^3.1",
     "nystudio107/craft-typogrify": "^1.1",
     "roave/security-advisories": "dev-master",
     "verbb/expanded-singles": "^1.0",
-    "vlucas/phpdotenv": "^3.1",
+    "vlucas/phpdotenv": "^2.4",
     "yiisoft/yii2-redis": "^2.0"
   },
   "prefer-stable": true,

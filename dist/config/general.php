@@ -14,7 +14,7 @@ return [
     'cpTrigger' => 'siteadmin',
     'securityKey' => getenv('SECURITY_KEY'),
     'enableCsrfProtection' => true,
-    'useProjectConfigFile' => false,
+    'useProjectConfigFile' => true,
     'omitScriptNameInUrls' => true,
     'cacheDuration'=> 604800,
     'usePathInfo' => true,

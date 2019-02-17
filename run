@@ -33,7 +33,7 @@ case "$1" in
   "install")
     if [ -f ../package.json ]; then
         echo "📦  ${green}Installing Node dependencies from package.json${reset}"
-        ${RUN} npm install
+        ${RUN} yarn
     fi
     if [ -f ../composer.json ]; then
         echo "📦  ${green}Installing PHP dependencies from composer.json${reset}"
@@ -44,7 +44,7 @@ case "$1" in
   "update")
     if [ -f ../package.json ]; then
         echo "📦  ${green}Updating Node dependencies from package.json${reset}"
-        ${RUN} npm update
+        ${RUN} yarn upgrade
     fi
     if [ -f ../composer.json ]; then
         echo "📦  ${green}Updating PHP dependencies from composer.json${reset}"
@@ -75,15 +75,15 @@ case "$1" in
 
   "watch")
     open "http://${IP}.xip.io:3000"
-    ${EXEC} npm run watch
+    ${EXEC} yarn watch
     ;;
 
   "production")
-    ${EXEC} npm run build
+    ${EXEC} yarn build
     ;;
 
   "lint")
-    ${EXEC} npm run lint
+    ${EXEC} yarn lint
     ;;
 
   *)

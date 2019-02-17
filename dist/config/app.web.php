@@ -16,9 +16,8 @@
 return [
 
   // Default settings for all environments
-  'modules' => [
-  ],
-  'bootstrap' => ['contact-form-subscribe-module'],
+  'modules' => [],
+  'bootstrap' => [],
   'components' => [
     // Default to database 0, so PHP sessions are in a separate database
     'redis' => [

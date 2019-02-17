@@ -21,10 +21,12 @@ categoryGroups:
     structure:
       maxLevels: '1'
       uid: afcf9676-e742-4633-bba1-68e8c0650742
-dateModified: 1547746170
+dateModified: 1550417215
 email:
   fromEmail: eli@elivz.com
-  fromName: 'Craft Starter'
+  fromName: $SITE_NAME
+  template: ''
+  transportSettings: null
   transportType: craft\mail\transportadapters\Sendmail
 fieldGroups:
   01970f63-9f9d-43f3-ac30-10574dd3c5fb:
@@ -35,47 +37,9 @@ fieldGroups:
     name: SEO
   513552c8-d502-4733-ad10-0157b689d8de:
     name: Globals
-  df8211bc-5d4b-4ab7-b586-699bb990b286:
-    name: Users
   e7ab9e9e-7738-445d-b3d9-189d9205efb2:
     name: Assets
 fields:
-  21da9ab2-e3ba-43d4-b2f3-bcf2ba399b80:
-    contentColumnType: text
-    fieldGroup: 513552c8-d502-4733-ad10-0157b689d8de
-    handle: globalEmployment
-    instructions: ''
-    name: 'Employment Prompt'
-    searchable: true
-    settings:
-      availableTransforms: '*'
-      availableVolumes: '*'
-      cleanupHtml: '1'
-      columnType: text
-      purifierConfig: ''
-      purifyHtml: '1'
-      redactorConfig: Simple.json
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\redactor\Field
-  49d54b05-87db-4010-95fb-2f1f7ff39620:
-    contentColumnType: text
-    fieldGroup: df8211bc-5d4b-4ab7-b586-699bb990b286
-    handle: userBio
-    instructions: ''
-    name: Bio
-    searchable: true
-    settings:
-      availableTransforms: '*'
-      availableVolumes: '*'
-      cleanupHtml: '1'
-      columnType: text
-      purifierConfig: ''
-      purifyHtml: '1'
-      redactorConfig: Simple.json
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\redactor\Field
   502ad949-a8cd-49fb-b302-4f2232a10a88:
     contentColumnType: text
     fieldGroup: e7ab9e9e-7738-445d-b3d9-189d9205efb2
@@ -112,25 +76,6 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Categories
-  8c1ccd5f-16ad-414c-8942-24b59393d41f:
-    contentColumnType: string
-    fieldGroup: df8211bc-5d4b-4ab7-b586-699bb990b286
-    handle: userPosition
-    instructions: 'Leave blank if you do not wish to have this person listed on the staff page.'
-    name: Position
-    searchable: true
-    settings:
-      branchLimit: '1'
-      limit: null
-      localizeRelations: false
-      selectionLabel: 'Select position'
-      source: 'group:c9538846-cf42-4353-b398-dc05a11728df'
-      sources: '*'
-      targetSiteId: null
-      viewMode: null
-    translationKeyFormat: null
-    translationMethod: site
-    type: craft\fields\Categories
   ab818467-690e-4942-b256-f32c13c016f7:
     contentColumnType: string
     fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
@@ -158,24 +103,9 @@ fields:
     translationKeyFormat: null
     translationMethod: site
     type: craft\fields\Assets
-  bd67a7a9-0927-48f4-a930-9da5d1231b62:
-    contentColumnType: string
-    fieldGroup: 513552c8-d502-4733-ad10-0157b689d8de
-    handle: globalAffiliations
-    instructions: ''
-    name: Affiliations
-    searchable: true
-    settings:
-      contentTable: '{{%matrixcontent_globalaffiliations}}'
-      localizeBlocks: false
-      maxBlocks: ''
-      minBlocks: ''
-    translationKeyFormat: null
-    translationMethod: site
-    type: craft\fields\Matrix
   bf181bad-4dfb-4017-a055-f2cadcabf68e:
     contentColumnType: text
-    fieldGroup: 01970f63-9f9d-43f3-ac30-10574dd3c5fb
+    fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
     handle: summary
     instructions: ''
     name: Summary
@@ -190,24 +120,6 @@ fields:
     translationKeyFormat: null
     translationMethod: none
     type: craft\fields\PlainText
-  c8925250-430d-4de2-8daf-a71cbb26e3ed:
-    contentColumnType: text
-    fieldGroup: 513552c8-d502-4733-ad10-0157b689d8de
-    handle: globalNewsletter
-    instructions: ''
-    name: 'Newsletter Prompt'
-    searchable: true
-    settings:
-      availableTransforms: '*'
-      availableVolumes: '*'
-      cleanupHtml: '1'
-      columnType: text
-      purifierConfig: ''
-      purifyHtml: '1'
-      redactorConfig: Simple.json
-    translationKeyFormat: null
-    translationMethod: none
-    type: craft\redactor\Field
   e827e435-8b27-4096-b1ba-b19b55274412:
     contentColumnType: string
     fieldGroup: 09499573-4a27-4776-82ea-b1eaa1ce59e3
@@ -245,107 +157,9 @@ fields:
     type: nystudio107\seomatic\fields\SeoSettings
 globalSets:
   118805b8-2143-45db-8e2a-685856a4bb19:
-    fieldLayouts:
-      6068c27d-34ad-40bd-a608-da5143b82f54:
-        tabs:
-          -
-            fields:
-              bd67a7a9-0927-48f4-a930-9da5d1231b62:
-                required: false
-                sortOrder: 2
-              c8925250-430d-4de2-8daf-a71cbb26e3ed:
-                required: false
-                sortOrder: 1
-            name: Footer
-            sortOrder: 1
-          -
-            fields:
-              21da9ab2-e3ba-43d4-b2f3-bcf2ba399b80:
-                required: false
-                sortOrder: 1
-            name: Employment
-            sortOrder: 2
     handle: global
     name: Globals
 matrixBlockTypes:
-  1f79c4c0-03e7-4381-b141-01e726a9c277:
-    field: bd67a7a9-0927-48f4-a930-9da5d1231b62
-    fieldLayouts:
-      2e2151dd-fa2a-426f-8857-c8ae05387239:
-        tabs:
-          -
-            fields:
-              0da00cec-3d0e-4a87-8cbc-b8e058f53f62:
-                required: false
-                sortOrder: 3
-              1e9ad87f-05d7-4d4f-8ecc-64b6b43aec09:
-                required: true
-                sortOrder: 2
-              8d0f4ca8-f1df-448d-8fd7-d22c9366a93a:
-                required: true
-                sortOrder: 1
-            name: Content
-            sortOrder: 1
-    fields:
-      0da00cec-3d0e-4a87-8cbc-b8e058f53f62:
-        contentColumnType: string
-        fieldGroup: null
-        handle: affiliateLink
-        instructions: ''
-        name: Link
-        searchable: true
-        settings:
-          placeholder: ''
-        translationKeyFormat: null
-        translationMethod: none
-        type: craft\fields\Url
-      1e9ad87f-05d7-4d4f-8ecc-64b6b43aec09:
-        contentColumnType: string
-        fieldGroup: null
-        handle: affiliateLogo
-        instructions: ''
-        name: Logo
-        searchable: true
-        settings:
-          allowedKinds:
-            - image
-          defaultUploadLocationSource: 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
-          defaultUploadLocationSubpath: ''
-          limit: '1'
-          localizeRelations: false
-          restrictFiles: '1'
-          selectionLabel: 'Upload logo'
-          singleUploadLocationSource: 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
-          singleUploadLocationSubpath: ''
-          source: null
-          sources:
-            - 'volume:ae5a1875-1b44-4250-babb-6180a11c226f'
-          targetSiteId: null
-          useSingleFolder: ''
-          viewMode: large
-        translationKeyFormat: null
-        translationMethod: site
-        type: craft\fields\Assets
-      8d0f4ca8-f1df-448d-8fd7-d22c9366a93a:
-        contentColumnType: text
-        fieldGroup: null
-        handle: affiliate
-        instructions: ''
-        name: Name
-        searchable: true
-        settings:
-          charLimit: ''
-          code: ''
-          columnType: text
-          initialRows: '4'
-          multiline: ''
-          placeholder: ''
-        translationKeyFormat: null
-        translationMethod: none
-        type: craft\fields\PlainText
-    handle: logo
-    name: Logo
-    sortOrder: 1
   381ca5c9-db4d-47d7-8cf1-c768ddb8817a:
     field: e827e435-8b27-4096-b1ba-b19b55274412
     fieldLayouts:
@@ -623,10 +437,6 @@ plugins:
     licenseKey: null
     schemaVersion: 2.2.1
     settings: null
-  retour:
-    edition: standard
-    enabled: true
-    schemaVersion: 3.0.6
   seomatic:
     enabled: '1'
     licenseKey: null
@@ -649,11 +459,6 @@ plugins:
       separatorChar: '|'
       siteGroupsSeparate: '1'
       sitemapsEnabled: '1'
-  twigpack:
-    enabled: false
-    licenseKey: null
-    schemaVersion: 1.0.0
-    settings: null
   typogrify:
     enabled: '1'
     licenseKey: null
@@ -687,29 +492,6 @@ sections:
                     sortOrder: 1
                 name: SEO
                 sortOrder: 2
-        handle: pages
-        hasTitleField: true
-        name: Pages
-        sortOrder: 1
-        titleFormat: ''
-        titleLabel: Title
-      fd44adc9-74db-4bc1-9ed7-a824688bde1f:
-        fieldLayouts:
-          794511ac-6aa9-4385-ba3d-e5d110d26038:
-            tabs:
-              -
-                fields:
-                  ab818467-690e-4942-b256-f32c13c016f7:
-                    required: false
-                    sortOrder: 2
-                  bf181bad-4dfb-4017-a055-f2cadcabf68e:
-                    required: true
-                    sortOrder: 1
-                  e827e435-8b27-4096-b1ba-b19b55274412:
-                    required: true
-                    sortOrder: 3
-                name: Content
-                sortOrder: 1
         handle: pages
         hasTitleField: true
         name: Pages
@@ -817,23 +599,23 @@ sections:
     type: channel
 siteGroups:
   ddc6a34a-a42f-4621-adea-26920085b62f:
-    name: 'Craft Starter'
+    name: 'Main'
 sites:
   7ee499f4-5195-4a04-8f4e-16f1ee76449a:
     baseUrl: '@web/'
     handle: default
     hasUrls: '1'
     language: en-US
-    name: 'Craft Starter'
+    name: 'Default'
     primary: '1'
     siteGroup: ddc6a34a-a42f-4621-adea-26920085b62f
     sortOrder: '1'
 system:
   edition: pro
   live: true
-  name: 'Borderview Veterinary Hospital'
-  schemaVersion: 3.1.20
-  timeZone: America/Toronto
+  name: $SITE_NAME
+  schemaVersion: 3.1.25
+  timeZone: America/New_York
 users:
   allowPublicRegistration: false
   defaultGroup: ''
@@ -841,13 +623,6 @@ users:
     6b842d67-6b83-42f8-9590-c5cb9492e981:
       tabs:
         -
-          fields:
-            49d54b05-87db-4010-95fb-2f1f7ff39620:
-              required: false
-              sortOrder: 2
-            8c1ccd5f-16ad-414c-8942-24b59393d41f:
-              required: false
-              sortOrder: 1
           name: Info
           sortOrder: 1
   groups:
@@ -921,15 +696,6 @@ users:
   photoVolumeUid: 0f81a561-a5d7-4c37-9f84-dcae3607f77e
   requireEmailVerification: true
 volumes:
-  0f81a561-a5d7-4c37-9f84-dcae3607f77e:
-    handle: headshots
-    hasUrls: true
-    name: Headshots
-    settings:
-      path: '@webroot/media/headshots'
-    sortOrder: 1
-    type: craft\volumes\Local
-    url: '@web/media/headshots'
   307f3fab-17cc-4ad5-b69e-ea6c7574067d:
     handle: documents
     hasUrls: true

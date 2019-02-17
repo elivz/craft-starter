@@ -44,6 +44,7 @@
     "autotrack": "^2.4",
     "axios": "^0.18",
     "focus-visible": "^4.1",
+    "instant.page": "^1.1.0",
     "intersection-observer": "^0.5",
     "lazysizes": "^4.1",
     "qs": "^6.6",
