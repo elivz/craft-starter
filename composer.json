@@ -45,14 +45,14 @@
       "@composer dump-autoload -o"
     ],
     "post-update-cmd": [
-      "@php craft migrate/all",
-      "@php craft project-config/sync",
-      "@php craft clear-caches/all"
+      "@php dist/craft migrate/all",
+      "@php dist/craft project-config/sync",
+      "@php dist/craft clear-caches/all"
     ],
     "post-install-cmd": [
-      "@php craft migrate/all",
-      "@php craft project-config/sync",
-      "@php craft clear-caches/all"
+      "@php dist/craft migrate/all",
+      "@php dist/craft project-config/sync",
+      "@php dist/craft clear-caches/all"
     ]
   }
 }
