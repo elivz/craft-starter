@@ -27,13 +27,13 @@ stage_deploy:
   only:
     - develop
   script:
-    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public/media' --exclude '.env' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
-    - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft cache/flush-all"
+    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public_html/media' --exclude '.env' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
+    - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft project-config/sync;${STAGING_ROOT}/craft clear-caches/all"
 
 live_deploy:
   stage: deploy
   only:
     - master
   script:
-    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public/media' --exclude '.env' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
-    - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft cache/flush-all"
+    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public_html/media' --exclude '.env' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
+    - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft project-config/sync;${LIVE_ROOT}/craft clear-caches/all"

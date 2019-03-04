@@ -44,11 +44,15 @@
       "@php -r \"unlink('LICENSE.md');\"",
       "@composer dump-autoload -o"
     ],
-    "post-install-cmd": [
-      "dist/craft migrate/all"
-    ],
     "post-update-cmd": [
-      "dist/craft migrate/all"
+      "@php craft migrate/all",
+      "@php craft project-config/sync",
+      "@php craft clear-caches/all"
+    ],
+    "post-install-cmd": [
+      "@php craft migrate/all",
+      "@php craft project-config/sync",
+      "@php craft clear-caches/all"
     ]
   }
 }

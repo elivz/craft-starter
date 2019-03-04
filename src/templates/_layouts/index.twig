@@ -18,6 +18,9 @@
       <link rel="preconnect" href="{{ domain }}" crossorigin>
     {% endfor %}
 
+    {# Main Styles -#}
+    <link rel="stylesheet" href="{{ rev('/styles/main.css') }}">
+
     {# Everything Craft outputs directly -#}
     {{ head() }}
 
@@ -55,9 +58,6 @@
         try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
       })(document);
     </script>
-
-    {# Main Styles -#}
-    <link rel="stylesheet" href="{{ rev('/styles/main.css') }}">
 
     {# Load javascript files -#}
     <script src="{{ rev('/scripts/initial.js') }}" async></script>
