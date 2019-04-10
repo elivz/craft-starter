@@ -26,6 +26,7 @@ npm-debug.log
 
 # MISC FILES
 .cache
+.config
 .DS_Store
 .idea
 .project
