@@ -71,6 +71,8 @@ case "$1" in
     echo "☁️  ${green}Pulling assets and database from the remote server${reset}"
     ./scripts/pull_db.sh
     ./scripts/pull_assets.sh
+    ${EXEC} dist/craft migrate/all
+    ${EXEC} dist/craft project-config/sync
     ;;
 
   "watch")

@@ -1,8 +1,7 @@
 module.exports = webpackConfig => {
   // Remove original rule
   webpackConfig.module.rules = webpackConfig.module.rules.filter(
-    rule =>
-      String(rule.test) !== String(/(\.(png|jpe?g|gif)$|^((?!font).)*\.svg$)/)
+    rule => String(rule.test) !== String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/)
   );
 
   // Add rule for PNG, JPEG, & GIF files
@@ -13,7 +12,18 @@ module.exports = webpackConfig => {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: `${Config.fileLoaderDirs.images}/[name].[ext]?[hash]`,
+          name: path => {
+            if (!/node_modules|bower_components/.test(path)) {
+              return `${Config.fileLoaderDirs.images}/[name].[ext]?[hash]`;
+            }
+
+            return `${Config.fileLoaderDirs.images}/vendor/${path
+              .replace(/\\/g, '/')
+              .replace(
+                /((.*(node_modules|bower_components))|images|image|img|assets)\//g,
+                ''
+              )}?[hash]`;
+          },
           publicPath: Config.resourceRoot,
         },
       },
@@ -28,7 +38,18 @@ module.exports = webpackConfig => {
         loader: 'svg-url-loader',
         options: {
           limit: 10000,
-          name: `${Config.fileLoaderDirs.images}/[name].[ext]?[hash]`,
+          name: path => {
+            if (!/node_modules|bower_components/.test(path)) {
+              return `${Config.fileLoaderDirs.images}/[name].[ext]?[hash]`;
+            }
+
+            return `${Config.fileLoaderDirs.images}/vendor/${path
+              .replace(/\\/g, '/')
+              .replace(
+                /((.*(node_modules|bower_components))|images|image|img|assets)\//g,
+                ''
+              )}?[hash]`;
+          },
           publicPath: Config.resourceRoot,
           iesafe: true,
         },

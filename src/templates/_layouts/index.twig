@@ -29,12 +29,11 @@
       (function(d) {
         d.documentElement.className = d.documentElement.className.replace('no-js', 'js');
 
-        window.site = {
-          baseUrl: '{{ siteUrl }}',
-          siteName: '{{ siteName }}',
-          csrfTokenName: "{{ craft.app.config.general.csrfTokenName|e('js') }}",
-          csrfTokenValue: "{{ craft.app.request.csrfToken |e('js') }}"
-        };
+        window.site = {{ {
+          baseUrl: siteUrl,
+          siteName: siteName,
+          csrfToken: craft.app.request.csrfToken
+        }|json_encode }}
 
         function loadScript(src) {
           var r=d.getElementsByTagName('script')[0],s=d.createElement('script');

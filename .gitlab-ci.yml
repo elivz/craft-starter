@@ -7,6 +7,7 @@ variables:
   STAGING_SSH_USER: REPLACE_ME
   STAGING_DOMAIN: REPLACE_ME
   STAGING_ROOT: /var/www/staging_html
+  EXCLUDED: --exclude 'storage/*' --exclude 'public_html/media' --exclude '.env'
 
 cache:
   paths:
@@ -27,7 +28,7 @@ stage_deploy:
   only:
     - develop
   script:
-    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public_html/media' --exclude '.env' ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
+    - rsync -chaz --stats --delete ${EXCLUDED} ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
     - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft project-config/sync;${STAGING_ROOT}/craft clear-caches/all"
 
 live_deploy:
@@ -35,5 +36,5 @@ live_deploy:
   only:
     - master
   script:
-    - rsync -chaz --stats --delete --exclude 'storage/*' --exclude 'public_html/media' --exclude '.env' ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
+    - rsync -chaz --stats --delete ${EXCLUDED} ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
     - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft project-config/sync;${LIVE_ROOT}/craft clear-caches/all"

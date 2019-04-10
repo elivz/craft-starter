@@ -14,6 +14,10 @@ services:
     environment:
       # Don't change these
       ENVIRONMENT:
+      BASE_URL:
+      BASE_PATH:
+      PUBLIC_FOLDER: /dist${PUBLIC_FOLDER}
+      SECURITY_KEY:
       DB_HOST:
       DB_NAME:
       DB_USER:
@@ -21,11 +25,6 @@ services:
       DB_PORT:
       REDIS_HOST:
       REDIS_PORT:
-      SITE_NAME: ${COMPOSE_PROJECT_NAME}
-      BASE_URL:
-      BASE_PATH:
-      PUBLIC_FOLDER: /dist${PUBLIC_FOLDER}
-      SECURITY_KEY:
       IP:
 
   db:
