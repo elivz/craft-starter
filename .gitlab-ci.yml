@@ -29,7 +29,7 @@ stage_deploy:
     - develop
   script:
     - rsync -chaz --stats --delete ${EXCLUDED} ./dist/* ${STAGING_SSH_USER}@${STAGING_DOMAIN}:${STAGING_ROOT}
-    - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft project-config/sync;${STAGING_ROOT}/craft clear-caches/all"
+    - ssh ${STAGING_SSH_USER}@${STAGING_DOMAIN} "${STAGING_ROOT}/craft migrate/all;${STAGING_ROOT}/craft project-config/sync;${STAGING_ROOT}/craft clear-caches/template-caches"
 
 live_deploy:
   stage: deploy
@@ -37,4 +37,4 @@ live_deploy:
     - master
   script:
     - rsync -chaz --stats --delete ${EXCLUDED} ./dist/* ${LIVE_SSH_USER}@${LIVE_DOMAIN}:${LIVE_ROOT}
-    - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft project-config/sync;${LIVE_ROOT}/craft clear-caches/all"
+    - ssh ${LIVE_SSH_USER}@${LIVE_DOMAIN} "${LIVE_ROOT}/craft migrate/all;${LIVE_ROOT}/craft project-config/sync;${LIVE_ROOT}/craft clear-caches/template-caches"
