@@ -21,11 +21,8 @@
     {# Main Styles -#}
     <link rel="stylesheet" href="{{ rev('/styles/main.css') }}">
 
-    {# Everything Craft outputs directly -#}
-    {{ head() }}
-
-    {# Initialize polyfills -#}
-    <script>
+    {# Load JavaScript -#}
+    {% set inlineScripts %}
       (function(d) {
         d.documentElement.className = d.documentElement.className.replace('no-js', 'js');
 
@@ -44,6 +41,9 @@
         if (typeof window.matchMedia === 'undefined' && typeof window.msMatchMedia === 'undefined') {
           loadScript('https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js');
         }
+        if (!'IntersectionObserver' in window) {
+          loadScript('https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver');
+        }
 
         {# Typekit embed -#}
         var config = { kitId: 'xxx', scriptTimeout: 3000, async: true },
@@ -56,11 +56,16 @@
         if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);
         try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
       })(document);
-    </script>
+    {% endset %}
+    {% do craft.app.view.registerScript(inlineScripts, POS_HEAD) %}
+    {% do craft.app.view.registerScript(rev('/scripts/initial.js'), POS_HEAD) %}
+    {% do craft.app.view.registerJsFile(rev('/scripts/main.js'), {
+      defer: 'defer',
+      position: POS_HEAD,
+    }) %}
 
-    {# Load javascript files -#}
-    <script src="{{ rev('/scripts/initial.js') }}" async></script>
-    <script src="{{ rev('/scripts/main.js') }}" async defer></script>
+    {# Everything Craft outputs directly -#}
+    {{ head() }}
 
     {# RSS feed autodiscovery -#}
     <link rel="alternate" type="application/rss+xml" title="{{ siteName }} RSS feed" href="{{ url('blog/feed.rss') }}">
@@ -84,7 +89,7 @@
   <body class="{{ bodyClass ?? '' }}">
     {{ beginBody() }}
 
-    <a href="#main" class="c-skip-link no-smooth-scroll">Skip to content</a>
+    <a href="#main" class="fixed pin-t pin-l -mt-32 z-100 px-4 py-2 text-lg font-bold text-black bg-white shadow focus:mt-0">Skip to content</a>
 
     <!--[if lt IE 11]>
       <div class="browserupgrade">
@@ -96,20 +101,22 @@
 
     {% block top %}{% endblock %}
 
-    <div id="app">
-      {# Global website header, including navigation #}
-      {% block header %}
-        {% include "_layouts/global-header" %}
-      {% endblock %}
-
-      {# Main body content of page #}
-      <main id="main" class="outline-none" tabindex="-1">
-        {% block beforeContent %}{% endblock %}
-        {% block content %}
-          {% include ["_content/body-#{entry.slug}", "_content/body-#{entry.section.handle}", '_content/body-default'] %}
+    <div id="app" class="flex flex-col items-stretch min-h-screen">
+      <div class="flex-grow">
+        {# Global website header, including navigation #}
+        {% block header %}
+          {% include "_layouts/global-header" %}
         {% endblock %}
-        {% block afterContent %}{% endblock %}
-      </main>
+
+        {# Main body content of page #}
+        <main id="main" class="outline-none" tabindex="-1">
+          {% block beforeContent %}{% endblock %}
+          {% block content %}
+            {% include ["_content/body-#{entry.slug}", "_content/body-#{entry.section.handle}", '_content/body-default'] %}
+          {% endblock %}
+          {% block afterContent %}{% endblock %}
+        </main>
+      </div>
 
       {# Global footer #}
       {% block footer %}
