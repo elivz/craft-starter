@@ -1,6 +1,6 @@
 .c-wysiwyg {
   h3 {
-    @apply font-normal text-inherit text-black;
+    @apply font-normal text-black;
     font-size: 1.1em;
   }
   * + h3 {
@@ -24,10 +24,7 @@
   }
 
   a {
-    @apply text-grey;
-  }
-  &.text-grey a {
-    @apply text-black;
+    @apply text-blue-600;
   }
 
   ul,
@@ -56,7 +53,7 @@
   }
 
   td {
-    @apply text-grey text-left;
+    @apply text-gray-600 text-left;
     padding: 0.2rem 0.25rem;
   }
 

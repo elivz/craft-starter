@@ -1,5 +1,5 @@
 /* Tailwind's setup */
-@import 'tailwindcss/preflight';
+@import 'tailwindcss/base';
 @import 'tailwindcss/components';
 
 /* Styling for generic HTML elements */
@@ -11,3 +11,6 @@
 /* Utility classes */
 @import 'tailwindcss/utilities';
 @import 'utilities/*';
+
+/* Override everything else (use sparingly) */
+@import 'overrides/*';

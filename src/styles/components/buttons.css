@@ -9,11 +9,11 @@
 
   &:hover,
   &:focus {
-    @apply no-underline bg-grey-lighter;
+    @apply no-underline bg-gray-200;
   }
 
   &:disabled {
-    @apply text-grey cursor-not-allowed;
+    @apply text-gray-600 cursor-not-allowed;
   }
 }
 
@@ -34,6 +34,6 @@
 
   &:hover,
   &:focus {
-    @apply text-white bg-grey;
+    @apply text-white bg-gray-500;
   }
 }

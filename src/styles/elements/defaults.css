@@ -10,7 +10,7 @@ html {
 }
 
 a {
-  @apply text-inherit no-underline transition transition-all;
+  @apply no-underline transition transition-all;
 
   &:hover,
   &:focus {
