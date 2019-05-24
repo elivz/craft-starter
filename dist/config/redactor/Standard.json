@@ -1,13 +1,6 @@
 {
-    "buttons": [
-        "html",
-        "source",
-        "bold",
-        "italic",
-        "unorderedlist",
-        "orderedlist",
-        "link",
-        "file"
-    ],
-    "toolbarFixed": true
+  "buttons": ["html", "bold", "italic", "unorderedlist", "orderedlist", "link", "image", "file"],
+  "imageResizable": true,
+  "imagePosition": true,
+  "toolbarFixed": true
 }

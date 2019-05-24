@@ -47,12 +47,12 @@
     "post-update-cmd": [
       "@php dist/craft migrate/all",
       "@php dist/craft project-config/sync",
-      "@php dist/craft clear-caches/all"
+      "@php dist/craft clear-caches/template-caches"
     ],
     "post-install-cmd": [
       "@php dist/craft migrate/all",
       "@php dist/craft project-config/sync",
-      "@php dist/craft clear-caches/all"
+      "@php dist/craft clear-caches/template-caches"
     ]
   }
 }
