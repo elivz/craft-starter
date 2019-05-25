@@ -1,11 +1,5 @@
 .c-btn {
-  @apply inline-block
-    py-3 px-8
-    font-sans text-sm leading-tight tracking-wide uppercase text-black text-center
-    no-underline
-    bg-white
-    border border-black rounded
-    transition transition-all;
+  @apply inline-block py-3 px-8 font-sans text-sm leading-tight tracking-wide uppercase text-black text-center no-underline bg-white border border-black rounded transition transition-all;
 
   &:hover,
   &:focus {

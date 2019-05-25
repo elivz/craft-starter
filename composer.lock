@@ -74,16 +74,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.94.3",
+            "version": "3.95.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "402a7e30c4ad979ca264079cd224984840ce6b37"
+                "reference": "ae8bb13c2f53d0f6779bafde8a10e4b857263ad7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/402a7e30c4ad979ca264079cd224984840ce6b37",
-                "reference": "402a7e30c4ad979ca264079cd224984840ce6b37",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/ae8bb13c2f53d0f6779bafde8a10e4b857263ad7",
+                "reference": "ae8bb13c2f53d0f6779bafde8a10e4b857263ad7",
                 "shasum": ""
             },
             "require": {
@@ -153,7 +153,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-05-23T18:07:25+00:00"
+            "time": "2019-05-24T18:17:19+00:00"
         },
         {
             "name": "cebe/markdown",

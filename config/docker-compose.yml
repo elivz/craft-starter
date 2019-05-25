@@ -8,6 +8,8 @@ services:
       - '3000:3000'
     volumes:
       - ..:/var/www:delegated
+      - node_modules:/var/www/node_modules
+      - vendor:/var/www/dist/vendor
     links:
       - db
       - redis
@@ -45,3 +47,5 @@ services:
 
 volumes:
   data-volume:
+  node_modules:
+  vendor:
