@@ -16,12 +16,12 @@ To start, run the following command in the project folder to finish setting thin
 
 ### Installing & Managing Dependencies
 
-We use [NPM](https://docs.npmjs.com/cli/npm) for front-end dependency management, which you can access like this:
+We use [Yarn](https://yarnpkg.com) for front-end dependency management, which you can access like this:
 
-    ./run npm install -D flickity
-    ./run npm remove flickity
+    ./run yarn add flickity
+    ./run yarn remove flickity
 
-If you make manual changes to `package.json` (or, optionally, `composer.json`), you will need to run `./run update`.
+If you make manual changes to `package.json` (or `composer.json`), you will need to run `./run update`.
 
 ### Start Developing!
 
@@ -57,8 +57,8 @@ When you are finished working for the day, shut down the server with:
       - scripts   # All custom scripts for the theme
         - components  # Individual components providing site-specific functionality
         - plugins     # Self-contained generic plugins (not site-specific)
-      - static    # Favicons, htaccess file, and anything else that should go in the site root
-      - styles    # SCSS source files
+      - static    # Favicons, touch icons, etc
+      - styles    # CSS source files
       - templates # HTML/PHP/Twig templates
 
 ## Front-End Build Process

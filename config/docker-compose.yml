@@ -10,6 +10,7 @@ services:
       - ..:/var/www:delegated
       - node_modules:/var/www/node_modules
       - vendor:/var/www/dist/vendor
+      - runtime:/var/www/dist/storage/runtime
     links:
       - db
       - redis
@@ -49,3 +50,4 @@ volumes:
   data-volume:
   node_modules:
   vendor:
+  runtime:
